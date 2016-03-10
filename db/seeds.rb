@@ -35,3 +35,50 @@ Room.create!([{
     Membership.new(user: User.find_by(name: 'Ann'), room: Room.find_by(name: 'Card Games'))
     ]
 }])
+
+[{
+  room: Room.find_by(name: 'Computer Games')
+}, {
+  room: Room.find_by(name: 'Desktop Games')
+}, {
+  room: Room.find_by(name: 'Card Games')
+}].each do |info|
+  5.times do
+    Message.create!(
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna.',
+      room: info[:room],
+      user: User.find_by(name: 'Bob')
+    )
+  end
+end
+
+[{
+  room: Room.find_by(name: 'Computer Games')
+}, {
+  room: Room.find_by(name: 'Desktop Games')
+}].each do |info|
+  5.times do
+    Message.create!(
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna.',
+      room: info[:room],
+      user: User.find_by(name: 'John')
+    )
+  end
+end
+
+[{
+  room: Room.find_by(name: 'Desktop Games')
+}, {
+  room: Room.find_by(name: 'Card Games')
+}].each do |info|
+  5.times do
+    Message.create!(
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna.',
+      room: info[:room],
+      user: User.find_by(name: 'Ann')
+    )
+  end
+end

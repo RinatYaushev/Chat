@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
-
 gem 'rails'
 gem 'pg'
-gem 'jbuilder'
 
 gem 'bcrypt'
 gem 'draper'

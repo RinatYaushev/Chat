@@ -9,5 +9,8 @@ class Ability
     can :manage, Room do |room|
       room.user_ids.include?(user.id)
     end
+    can :manage, Message do |message|
+      message.room.user_ids.include?(user.id)
+    end
   end
 end
