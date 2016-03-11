@@ -7,12 +7,12 @@ class Api::RoomsController < ApplicationController
     @rooms ||= current_user.rooms
   end
 
-  def resource
-    @room ||= Room.find(params[:id])
-  end
-
   def build_resource
     @room = RoomBuilder.new(current_user, resource_params)
+  end
+
+  def resource
+    @room ||= Room.find(params[:id])
   end
 
   def resource_params

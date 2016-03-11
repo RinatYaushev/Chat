@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update
-    resource.update! resource_params
+    resource.update!(resource_params)
   end
 
   def destroy

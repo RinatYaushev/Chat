@@ -12,12 +12,12 @@ class Api::MessagesController < ApplicationController
     @messages ||= parent.messages
   end
 
-  def resource
-    @message ||= collection.find(params[:id])
-  end
-
   def build_resource
     @message = collection.new(resource_params)
+  end
+
+  def resource
+    @message ||= collection.find(params[:id])
   end
 
   def resource_params
