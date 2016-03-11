@@ -10,4 +10,14 @@ RSpec.describe Api::RoomsController, type: :controller do
   it { should route(:delete, '/api/rooms/1').to(action: :destroy, id: 1) }
 
   it { should route(:get, '/api/rooms/1').to(action: :show, id: 1) }
+
+  let(:user) { stub_model User }
+
+  before { sign_in user }
+
+  describe '#collection' do
+    before { expect(user).to receive(:rooms).and_return(:rooms) }
+
+    its(:collection) { should eq :rooms }
+  end
 end

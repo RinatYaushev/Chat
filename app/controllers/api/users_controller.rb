@@ -1,8 +1,6 @@
 class Api::UsersController < ApplicationController
   skip_before_action :authenticate, only: :create
 
-  load_and_authorize_resource
-
   private
 
   def resource
