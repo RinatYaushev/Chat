@@ -11,7 +11,7 @@ class Room < ActiveRecord::Base
 
   class << self
     def build user, params = {}
-      params[:user_ids] = params[:user_ids].push(user.id)
+      params[:user_ids] = params[:user_ids]&.push(user.id)
 
       new params
     end

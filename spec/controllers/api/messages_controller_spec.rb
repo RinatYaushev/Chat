@@ -4,4 +4,23 @@ RSpec.describe Api::MessagesController, type: :controller do
   it { should route(:get, '/api/rooms/1/messages').to(action: :index, room_id: 1) }
 
   it { should route(:post, '/api/rooms/1/messages').to(action: :create, room_id: 1) }
+
+  let(:user) { stub_model User }
+
+  let(:room) { stub_model Room }
+
+  before { sign_in user }
+
+  describe '#collection' do
+    before do
+      #
+      # subject.parent.messages -> :messages
+      #
+      expect(subject).to receive(:parent) do
+        double.tap { |a| expect(a).to receive(:messages).and_return(:messages) }
+      end
+    end
+
+    its(:collection) { should eq :messages }
+  end
 end

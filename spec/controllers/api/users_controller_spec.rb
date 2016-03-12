@@ -36,7 +36,7 @@ RSpec.describe Api::UsersController, type: :controller do
   end
 
   describe '#resource' do
-    before { expect(subject).to receive(:params).and_return({ id: 1 }) }
+    before { expect(subject).to receive(:params).and_return(id: 1) }
 
     before { expect(User).to receive(:find).with(1) }
 

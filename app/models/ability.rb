@@ -4,9 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    can :create, Room if user.present?
-
-    can [:update, :destroy], Room do |room|
+    can :manage, Room do |room|
       room.user_ids.include?(user.id)
     end
 
