@@ -8,7 +8,7 @@ class Api::RoomsController < ApplicationController
   end
 
   def build_resource
-    @room = RoomBuilder.new(current_user, resource_params)
+    @room = Room.build(current_user, resource_params)
   end
 
   def resource

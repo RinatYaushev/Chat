@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
 
   it { should have_one(:auth_token).dependent(:destroy) }
 
-  it { should have_many(:rooms).through(:memberships).dependent(:destroy) }
+  it { should have_many(:rooms).through(:memberships) }
 
   it { should have_many(:memberships).dependent(:destroy) }
 

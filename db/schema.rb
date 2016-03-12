@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160310080303) do
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "room_id",    null: false
+    t.integer  "user_id"
+    t.integer  "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
