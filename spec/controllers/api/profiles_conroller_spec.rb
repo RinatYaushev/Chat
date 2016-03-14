@@ -6,9 +6,7 @@ RSpec.describe Api::ProfilesController, type: :controller do
   it { should route(:put, '/api/profile').to(action: :update) }
 
   context do
-    let(:user) { stub_model User }
-
-    before { sign_in user }
+    before { sign_in }
 
     describe '#update.json' do
       let(:params) do
@@ -19,7 +17,7 @@ RSpec.describe Api::ProfilesController, type: :controller do
         }
       end
 
-      before { expect(user).to receive(:update!).with(params) }
+      before { expect(subject.current_user).to receive(:update!).with(params) }
 
       before { put :update, profile: params, format: :json }
 

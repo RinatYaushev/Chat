@@ -17,21 +17,19 @@ RSpec.describe Api::SessionsController, type: :controller do
     it { should render_template :create }
   end
 
-  describe '#destroy.json' do
-    let(:session) { double }
+  context do
+    before { sign_in }
 
-    let(:user) { stub_model User }
+    describe '#destroy.json' do
+      let(:session) { double }
 
-    before { expect(subject).to receive(:authenticate) }
+      before { expect(Session).to receive(:new).with(user: subject.current_user).and_return(session) }
 
-    before { expect(subject).to receive(:current_user).and_return(user) }
+      before { expect(session).to receive(:destroy!) }
 
-    before { expect(Session).to receive(:new).with(user: user).and_return(session) }
+      before { delete :destroy, format: :json }
 
-    before { expect(session).to receive(:destroy!) }
-
-    before { delete :destroy, format: :json }
-
-    it { should respond_with :ok }
+      it { should respond_with :ok }
+    end
   end
 end

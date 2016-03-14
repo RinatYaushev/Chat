@@ -5,11 +5,7 @@ RSpec.describe Api::MessagesController, type: :controller do
 
   it { should route(:post, '/api/rooms/1/messages').to(action: :create, room_id: 1) }
 
-  let(:user) { stub_model User }
-
-  let(:room) { stub_model Room }
-
-  before { sign_in user }
+  before { sign_in }
 
   describe '#collection' do
     before do

@@ -11,11 +11,9 @@ RSpec.describe Api::RoomsController, type: :controller do
 
   it { should route(:get, '/api/rooms/1').to(action: :show, id: 1) }
 
-  let(:user) { stub_model User }
-
   let(:room) { stub_model Room }
 
-  before { sign_in user }
+  before { sign_in }
 
   describe '#index.json' do
     before { get :index, format: :json }
@@ -36,7 +34,7 @@ RSpec.describe Api::RoomsController, type: :controller do
   describe '#create.json' do
     let(:params) { { name: 'test_room' } }
 
-    before { expect(Room).to receive(:build).with(user, params).and_return(room) }
+    before { expect(Room).to receive(:build).with(subject.current_user, params).and_return(room) }
 
     before { expect(room).to receive(:save!) }
 
@@ -72,7 +70,7 @@ RSpec.describe Api::RoomsController, type: :controller do
   end
 
   describe '#collection' do
-    before { expect(user).to receive(:rooms).and_return(:rooms) }
+    before { expect(subject.current_user).to receive(:rooms).and_return(:rooms) }
 
     its(:collection) { should eq :rooms }
   end
