@@ -9,5 +9,21 @@ describe RoomDecorator do
     its([:id]) { should eq 1 }
 
     its([:name]) { should eq 'test_room' }
+
+    context do
+      let(:decorated) { room.decorate }
+
+      before { expect(decorated).to receive(:users).and_return(:users) }
+
+      subject { decorated.as_json }
+
+      its([:users]) { should eq :users }
+    end
+
+    context do
+      subject { room.decorate.as_json brief: true }
+
+      its([:users]) { should be_nil }
+    end
   end
 end

@@ -9,6 +9,8 @@ RSpec.describe Room, type: :model do
 
   it { should have_many(:messages).dependent(:destroy) }
 
+  it { should have_many(:pings).dependent(:destroy) }
+
   context do
     let(:room) { stub_model Room }
 

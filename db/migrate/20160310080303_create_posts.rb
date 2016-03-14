@@ -1,7 +1,8 @@
-class CreateMessages < ActiveRecord::Migration
+class CreatePosts < ActiveRecord::Migration
   def change
-    create_table :messages do |t|
+    create_table :posts do |t|
       t.string :content
+      t.string :type
 
       t.references :user, index: true, null: false
       t.references :room, index: true, null: false

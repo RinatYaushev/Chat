@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :messages, dependent: :destroy
 
+  has_many :pings, dependent: :destroy
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

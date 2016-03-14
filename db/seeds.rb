@@ -51,6 +51,12 @@ Room.create!([{
       user: User.find_by(name: 'Bob')
     )
   end
+  3.times do
+    Ping.create!(
+      room: info[:room],
+      user: User.find_by(name: 'Bob')
+    )
+  end
 end
 
 [{
@@ -66,6 +72,12 @@ end
       user: User.find_by(name: 'John')
     )
   end
+  3.times do
+    Ping.create!(
+      room: info[:room],
+      user: User.find_by(name: 'John')
+    )
+  end
 end
 
 [{
@@ -77,6 +89,12 @@ end
     Message.create!(
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna.',
+      room: info[:room],
+      user: User.find_by(name: 'Ann')
+    )
+  end
+  3.times do
+    Ping.create!(
       room: info[:room],
       user: User.find_by(name: 'Ann')
     )

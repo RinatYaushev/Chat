@@ -5,8 +5,8 @@ class RoomDecorator < Draper::Decorator
 
   def as_json params = {}
     {
-    id: id,
-    name: name
+      id: id,
+      name: name
     }.tap do |hash|
       hash[:users] = users unless params[:brief]
     end

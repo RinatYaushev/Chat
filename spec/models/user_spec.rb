@@ -14,4 +14,6 @@ RSpec.describe User, type: :model do
   it { should have_many(:memberships).dependent(:destroy) }
 
   it { should have_many(:messages).dependent(:destroy) }
+
+  it { should have_many(:pings).dependent(:destroy) }
 end

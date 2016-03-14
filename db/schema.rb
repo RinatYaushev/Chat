@@ -35,16 +35,17 @@ ActiveRecord::Schema.define(version: 20160310080303) do
   add_index "memberships", ["room_id"], name: "index_memberships_on_room_id", using: :btree
   add_index "memberships", ["user_id", "room_id"], name: "index_memberships_on_user_id_and_room_id", unique: true, using: :btree
 
-  create_table "messages", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "content"
+    t.string   "type"
     t.integer  "user_id",    null: false
     t.integer  "room_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "messages", ["room_id"], name: "index_messages_on_room_id", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+  add_index "posts", ["room_id"], name: "index_posts_on_room_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160310080303) do
     t.string   "name"
     t.string   "password_digest"
     t.integer  "messages_count",  default: 0
+    t.integer  "pings_count",     default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
