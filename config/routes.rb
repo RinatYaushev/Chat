@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     concern :votable do
-      post :vote, to: 'votes#vote'
+      post :vote, to: 'votes#create'
     end
     resources :users, only: [:create, :show]
     resource :profile, only: [:show, :update]

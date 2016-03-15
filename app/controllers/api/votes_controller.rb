@@ -1,25 +1,29 @@
 class Api::VotesController < ApplicationController
-  layout false
-
-  before_action :prepare_parent
-  before_action :prepare_vote
-
-  def vote
-    @vote.kind = params[:kind]
-    @vote.save
-  end
-
   private
 
-  def prepare_parent
-    params.each do |name, parent_id|
-      if name =~ /(.+)_id$/
-        @parent = Regexp.last_match[1].classify.constantize.find(parent_id)
-      end
+  def parent
+    if params[:message_id]
+      @message = Message.find(params[:message_id])
+    elsif params[:ping_id]
+      @ping = Ping.find(params[:ping_id])
+    else
+      raise ActiveRecord::RecordNotFound
     end
   end
 
-  def prepare_vote
-    @vote = Vote.find_or_initialize_by(votable: @parent, user: current_user)
+  def collection
+    @votes ||= parent.votes
+  end
+
+  def build_resource
+    @vote = collection.build(resource_params)
+  end
+
+  def resource
+    @vote ||= collection.find(params[:id])
+  end
+
+  def resource_params
+    params.require(:vote).permit(:kind).merge(user: current_user)
   end
 end
