@@ -7,10 +7,39 @@ RSpec.describe Api::PingsController, type: :controller do
 
   before { sign_in }
 
+  describe '#create.json' do
+    let(:room) { stub_model Room }
+
+    let(:ping) { double }
+
+    before { expect(Room).to receive(:find).with('10').and_return(room) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:show, room).and_return(true) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:create, Ping).and_return(true) }
+
+    before do
+      #
+      #subject.collection.new -> ping
+      #
+      expect(subject).to receive(:collection) do
+        double.tap do |a|
+          expect(a).to receive(:new).with(user: subject.current_user).and_return(ping)
+        end
+      end
+    end
+
+    before { expect(ping).to receive(:save!) }
+
+    before { post :create, room_id: 10, format: :json }
+
+    it { should render_template :create }
+  end
+
   describe '#collection' do
     before do
       #
-      # subject.parent.pings -> :pings
+      # subject.parent.pings -> pings
       #
       expect(subject).to receive(:parent) do
         double.tap { |a| expect(a).to receive(:pings).and_return(:pings) }

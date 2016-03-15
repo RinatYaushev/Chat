@@ -5,7 +5,7 @@ RSpec.describe Vote, type: :model do
 
   it { should belong_to(:votable) }
 
-  pending { should validate_uniqueness_of(:user).scoped_to([:votable, :votable_type]) }
+  # pending { should validate_uniqueness_of(:user).scoped_to([:votable, :votable_type]) }
 
   it { should define_enum_for(:kind).with([:like, :dislike]) }
 
