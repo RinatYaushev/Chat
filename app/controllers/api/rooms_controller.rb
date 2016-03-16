@@ -14,7 +14,7 @@ class Api::RoomsController < ApplicationController
   end
 
   def resource
-    @room ||= Room.find(params[:id])
+    @room
   end
 
   def resource_params

@@ -76,10 +76,8 @@ RSpec.describe Api::RoomsController, type: :controller do
   end
 
   describe '#resource' do
-    before { expect(subject).to receive(:params).and_return(id: 1) }
+    before { subject.instance_variable_set :@room, :room }
 
-    before { expect(Room).to receive(:find).with(1) }
-
-    it { expect { subject.send :resource }.to_not(raise_error) }
+    its(:resource) { should eq :room }
   end
 end

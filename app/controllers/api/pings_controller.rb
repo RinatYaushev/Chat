@@ -1,11 +1,14 @@
 class Api::PingsController < ApplicationController
   load_and_authorize_resource :room
+
   load_and_authorize_resource :ping, through: :room
+
+  skip_load_resource :ping, through: :room, only: :create
 
   private
 
   def parent
-    @room ||= Room.find(params[:room_id])
+    @room
   end
 
   def collection
@@ -17,6 +20,6 @@ class Api::PingsController < ApplicationController
   end
 
   def resource
-    @ping ||= collection.find(params[:id])
+    @ping
   end
 end

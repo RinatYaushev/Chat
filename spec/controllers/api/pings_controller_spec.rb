@@ -16,7 +16,7 @@ RSpec.describe Api::PingsController, type: :controller do
 
     before { expect(subject.current_ability).to receive(:can?).with(:show, room).and_return(true) }
 
-    before { expect(subject.current_ability).to receive(:can?).with(:create, Ping).and_return(true) }
+    before { expect(subject.current_ability).to receive(:can?).with(:create, room => Ping).and_return(true) }
 
     before do
       #
@@ -36,6 +36,28 @@ RSpec.describe Api::PingsController, type: :controller do
     it { should render_template :create }
   end
 
+  describe '#index.json' do
+    let(:room) { stub_model Room }
+
+    let(:ping) { double }
+
+    before { expect(Room).to receive(:find).with('24').and_return(room) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:show, room).and_return(true) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:index, room => Ping).and_return(true) }
+
+    before { get :index, room_id: 24, format: :json }
+
+    it { should render_template :index }
+  end
+
+  describe '#parent' do
+    before { subject.instance_variable_set :@room, :room }
+
+    its(:parent) { should eq :room }
+  end
+
   describe '#collection' do
     before do
       #
@@ -47,5 +69,11 @@ RSpec.describe Api::PingsController, type: :controller do
     end
 
     its(:collection) { should eq :pings }
+  end
+
+  describe '#resource' do
+    before { subject.instance_variable_set :@ping, :ping }
+
+    its(:resource) { should eq :ping }
   end
 end

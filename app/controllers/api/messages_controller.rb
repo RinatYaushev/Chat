@@ -1,11 +1,14 @@
 class Api::MessagesController < ApplicationController
   load_and_authorize_resource :room
+
   load_and_authorize_resource :message, through: :room
+
+  skip_load_resource :message, through: :room, only: :create
 
   private
 
   def parent
-    @room ||= Room.find(params[:room_id])
+    @room
   end
 
   def collection
@@ -17,7 +20,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def resource
-    @message ||= collection.find(params[:id])
+    @message
   end
 
   def resource_params

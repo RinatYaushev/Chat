@@ -16,14 +16,12 @@ class Api::VotesController < ApplicationController
   end
 
   def build_resource
-    @vote = collection.build(resource_params)
+    @vote = Vote.find_or_initialize_by(votable_id: parent.id, votable_type: parent.type, user: current_user).tap do |a|
+      a.kind = params[:kind]
+    end
   end
 
   def resource
     @vote ||= collection.find(params[:id])
-  end
-
-  def resource_params
-    params.require(:vote).permit(:kind).merge(user: current_user)
   end
 end
