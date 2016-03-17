@@ -13,5 +13,15 @@ describe UserDecorator do
     its([:messages_count]) { should eq 0 }
 
     its([:pings_count]) { should eq 0 }
+
+    context do
+      before { expect(user).to receive(:avatar).with(:medium).and_return('/medium.jpeg') }
+
+      before { expect(user).to receive(:avatar).with(:thumbnail).and_return('/thumbnail.jpeg') }
+
+      its([:avatar]) do
+        should eq medium: 'http://test.host/medium.jpeg', thumbnail: 'http://test.host/thumbnail.jpeg'
+      end
+    end
   end
 end

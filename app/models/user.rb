@@ -11,5 +11,14 @@ class User < ActiveRecord::Base
 
   has_many :pings, dependent: :destroy
 
+  has_attached_file :avatar,
+    default_url: "/images/:style/missing.png",
+    styles: { thumbnail: '100', medium: '300' },
+    convert_options: { all: '-strip' }
+
+  validates_attachment :avatar,
+    content_type: { content_type: /\Aimage\/png\Z|\Aimage\/jpe?g\Z/ },
+    file_name: { matches: [/png\Z/, /jpe?g\Z/] }
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

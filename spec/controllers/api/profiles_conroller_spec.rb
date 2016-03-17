@@ -18,7 +18,7 @@ RSpec.describe Api::ProfilesController, type: :controller do
 
     before { expect(subject.current_user).to receive(:update!).with(params) }
 
-    before { put :update, profile: params, format: :json }
+    before { put :update, user: params, format: :json }
 
     it { should render_template :update }
   end

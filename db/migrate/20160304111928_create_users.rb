@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.integer :messages_count, default: 0
       t.integer :pings_count, default: 0
+      t.attachment :avatar
 
       t.timestamps null: false
     end

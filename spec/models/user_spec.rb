@@ -16,4 +16,12 @@ RSpec.describe User, type: :model do
   it { should have_many(:messages).dependent(:destroy) }
 
   it { should have_many(:pings).dependent(:destroy) }
+
+  it { should have_attached_file :avatar }
+
+  it do
+    should validate_attachment_content_type(:avatar).
+      allowing('image/png', 'image/jpeg', 'image/jpg').
+      rejecting('image/gif', 'application/pdf')
+  end
 end

@@ -6,6 +6,7 @@ gem 'pg'
 gem 'bcrypt'
 gem 'draper'
 gem 'cancancan'
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug'

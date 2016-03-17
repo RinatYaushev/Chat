@@ -56,17 +56,21 @@ ActiveRecord::Schema.define(version: 20160315075219) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
-    t.integer  "messages_count",  default: 0
-    t.integer  "pings_count",     default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "messages_count",      default: 0
+    t.integer  "pings_count",         default: 0
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id",               null: false
-    t.string   "votable_type",             null: false
-    t.integer  "user_id",                  null: false
-    t.integer  "kind",         default: 0, null: false
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "user_id"
+    t.integer  "kind",         default: 0
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
