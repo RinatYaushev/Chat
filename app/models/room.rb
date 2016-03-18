@@ -7,6 +7,8 @@ class Room < ActiveRecord::Base
 
   has_many :pings, dependent: :destroy
 
+  has_many :pictures, dependent: :destroy
+
   validates :name, presence: true
 
   validates :memberships, length: { minimum: 2, message: 'Cannot be 1 user' }

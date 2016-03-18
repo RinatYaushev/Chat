@@ -5,6 +5,8 @@ RSpec.describe Api::VotesController, type: :controller do
 
   it { should route(:post, '/api/pings/1/vote').to(action: :create, ping_id: 1) }
 
+  it { should route(:post, '/api/pictures/1/vote').to(action: :create, picture_id: 1) }
+
   before { sign_in }
 
   describe '#create.json' do
@@ -45,6 +47,25 @@ RSpec.describe Api::VotesController, type: :controller do
 
       it { should render_template :create }
     end
+
+    context do
+      let(:picture) { stub_model Picture, id: 1, type: 'Picture' }
+
+      let(:vote) { double }
+
+      before { expect(Picture).to receive(:find).with('18').and_return(picture).twice }
+
+      before { expect(Vote).to receive(:find_or_initialize_by).
+        with(votable_id: picture.id, votable_type: picture.type, user: subject.current_user).and_return(vote) }
+
+      before { expect(vote).to receive(:kind=).with('like').and_return true }
+
+      before { expect(vote).to receive(:save!) }
+
+      before { post :create, picture_id: 18, kind: 'like', format: :json }
+
+      it { should render_template :create }
+    end
   end
 
   describe '#parent' do
@@ -60,6 +81,14 @@ RSpec.describe Api::VotesController, type: :controller do
       before { expect(subject).to receive(:params).and_return(ping_id: 2).at_least(3) }
 
       before { expect(Ping).to receive(:find).with(2) }
+
+      it { expect { subject.send :parent }.to_not raise_error }
+    end
+
+    context do
+      before { expect(subject).to receive(:params).and_return(picture_id: 3).at_least(3) }
+
+      before { expect(Picture).to receive(:find).with(3) }
 
       it { expect { subject.send :parent }.to_not raise_error }
     end

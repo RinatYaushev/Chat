@@ -21,9 +21,9 @@ Rails.application.routes.draw do
         concerns :votable
       end
 
-      # resources :image_messages, only: [:create, :index] do
-      #   concerns :votable
-      # end
+      resources :pictures, only: [:create, :index] do
+        concerns :votable
+      end
     end
   end
 end

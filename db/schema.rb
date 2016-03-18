@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315075219) do
+ActiveRecord::Schema.define(version: 20160318085605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,12 @@ ActiveRecord::Schema.define(version: 20160315075219) do
     t.string   "type"
     t.integer  "user_id"
     t.integer  "room_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "posts", ["room_id"], name: "index_posts_on_room_id", using: :btree
@@ -64,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160315075219) do
     t.datetime "avatar_updated_at"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "pictures_count",      default: 0
   end
 
   create_table "votes", force: :cascade do |t|
