@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20160315075219) do
   create_table "posts", force: :cascade do |t|
     t.string   "content"
     t.string   "type"
-    t.integer  "user_id",    null: false
-    t.integer  "room_id",    null: false
+    t.integer  "user_id"
+    t.integer  "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

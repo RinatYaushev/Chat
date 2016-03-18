@@ -15,7 +15,8 @@ RSpec.describe Api::VotesController, type: :controller do
 
       before { expect(Message).to receive(:find).with('7').and_return(message).twice }
 
-      before { expect(Vote).to receive(:find_or_initialize_by).with(votable_id: message.id, votable_type: message.type, user: subject.current_user).and_return(vote) }
+      before { expect(Vote).to receive(:find_or_initialize_by).
+        with(votable_id: message.id, votable_type: message.type, user: subject.current_user).and_return(vote) }
 
       before { expect(vote).to receive(:kind=).with('like').and_return true }
 
@@ -33,7 +34,8 @@ RSpec.describe Api::VotesController, type: :controller do
 
       before { expect(Ping).to receive(:find).with('25').and_return(ping).twice }
 
-      before { expect(Vote).to receive(:find_or_initialize_by).with(votable_id: ping.id, votable_type: ping.type, user: subject.current_user).and_return(vote) }
+      before { expect(Vote).to receive(:find_or_initialize_by).
+        with(votable_id: ping.id, votable_type: ping.type, user: subject.current_user).and_return(vote) }
 
       before { expect(vote).to receive(:kind=).with('dislike').and_return true }
 

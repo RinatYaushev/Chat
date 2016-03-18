@@ -4,8 +4,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string :content
       t.string :type
 
-      t.references :user, index: true, null: false
-      t.references :room, index: true, null: false
+      t.references :user, index: true
+      t.references :room, index: true
 
       t.timestamps null: false
     end

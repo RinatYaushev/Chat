@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
   has_many :pings, dependent: :destroy
 
   has_attached_file :avatar,
-    default_url: "/images/:style/missing.png",
-    styles: { thumbnail: '100', medium: '300' },
+    default_url: '/images/:style/missing.png',
     convert_options: { all: '-strip' }
 
   validates_attachment :avatar,
