@@ -3,20 +3,20 @@ require 'rails_helper'
 RSpec.describe Session, type: :lib do
   it { should be_a ActiveModel::Validations }
 
-  let(:session) { Session.new name: 'test_name', password: '12345678' }
+  let(:session) { Session.new email: 'test@example.com', password: '12345678' }
 
   let(:user) { stub_model User }
 
   subject { session }
 
-  its(:name) { should eq 'test_name' }
+  its(:email) { should eq 'test@example.com' }
 
   its(:password) { should eq '12345678' }
 
   its(:decorate) { should eq subject }
 
   describe '#user' do
-    before { expect(User).to receive(:find_by).with(name: 'test_name') }
+    before { expect(User).to receive(:find_by).with(email: 'test@example.com') }
 
     it { expect { subject.send :user }.to_not raise_error }
   end
@@ -29,7 +29,7 @@ RSpec.describe Session, type: :lib do
 
       before { session.valid? }
 
-      its([:name]) { should eq ['not found'] }
+      its([:email]) { should eq ['not found'] }
     end
 
     context do

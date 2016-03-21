@@ -7,6 +7,7 @@ gem 'bcrypt'
 gem 'draper'
 gem 'cancancan'
 gem 'paperclip'
+gem 'rails-observers'
 
 group :development, :test do
   gem 'byebug'

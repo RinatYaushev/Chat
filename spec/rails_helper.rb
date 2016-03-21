@@ -61,6 +61,10 @@ RSpec.configure do |config|
   config.include Authentication
 
   config.include Paperclip::Shoulda::Matchers
+
+  config.before do
+    ActiveRecord::Base.observers.disable :all
+  end
 end
 
 Shoulda::Matchers.configure do |config|
