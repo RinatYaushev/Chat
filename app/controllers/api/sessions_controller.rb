@@ -12,6 +12,6 @@ class Api::SessionsController < ApplicationController
   end
 
   def resource_params
-    params.require(:session).permit(:name, :password)
+    params.require(:session).permit(:email, :password)
   end
 end

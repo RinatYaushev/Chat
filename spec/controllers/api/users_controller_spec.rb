@@ -8,6 +8,7 @@ RSpec.describe Api::UsersController, type: :controller do
   describe '#create.json' do
     let(:params) do
       {
+        email: 'test@example.com',
         name: 'Test name',
         password: '12345678',
         password_confirmation: '12345678'

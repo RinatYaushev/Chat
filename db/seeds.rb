@@ -1,13 +1,16 @@
 User.create!([
   {
+    email: 'bob@example.com',
     name: 'Bob',
     password: 'password',
     password_confirmation: 'password'
   }, {
+    email: 'john@example.com',
     name: 'John',
     password: 'password',
     password_confirmation: 'password'
   }, {
+    email: 'ann@example.com',
     name: 'Ann',
     password: 'password',
     password_confirmation: 'password'
@@ -33,7 +36,7 @@ Room.create!([{
   name: 'Card Games',
   memberships: [Membership.new(user: User.find_by(name: 'Bob'), room: Room.find_by(name: 'Card Games')),
     Membership.new(user: User.find_by(name: 'Ann'), room: Room.find_by(name: 'Card Games'))
-    ]
+  ]
 }])
 
 [{

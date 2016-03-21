@@ -8,11 +8,11 @@ RSpec.describe Api::SessionsController, type: :controller do
   describe '#create.json' do
     let(:session) { double }
 
-    before { expect(Session).to receive(:new).with(name: 'test_name', password: 'test').and_return(session) }
+    before { expect(Session).to receive(:new).with(email: 'test@example.com', password: 'test').and_return(session) }
 
     before { expect(session).to receive(:save!) }
 
-    before { post :create, session: { name: 'test_name', password: 'test' }, format: :json }
+    before { post :create, session: { email: 'test@example.com', password: 'test' }, format: :json }
 
     it { should render_template :create }
   end

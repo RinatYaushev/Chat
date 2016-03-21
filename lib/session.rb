@@ -1,14 +1,14 @@
 class Session
   include ActiveModel::Validations
 
-  attr_reader :name, :password
+  attr_reader :email, :password
 
   def initialize params
     params = params.try(:symbolize_keys) || {}
 
     @user = params[:user]
 
-    @name = params[:name]
+    @email = params[:email]
 
     @password = params[:password]
   end
@@ -17,7 +17,7 @@ class Session
     if user
       model.errors.add :password, 'is invalid' unless user.authenticate password
     else
-      model.errors.add :name, 'not found'
+      model.errors.add :email, 'not found'
     end
   end
 
@@ -45,6 +45,6 @@ class Session
 
   private
   def user
-    @user ||= User.find_by name: name
+    @user ||= User.find_by email: email
   end
 end

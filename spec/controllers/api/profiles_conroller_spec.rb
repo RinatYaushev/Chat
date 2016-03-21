@@ -10,6 +10,7 @@ RSpec.describe Api::ProfilesController, type: :controller do
   describe '#update.json' do
     let(:params) do
       {
+        email: 'test@example.com',
         name: 'Test name',
         password: '12345678',
         password_confirmation: '12345678'
