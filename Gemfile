@@ -8,6 +8,7 @@ gem 'draper'
 gem 'cancancan'
 gem 'paperclip'
 gem 'rails-observers'
+gem 'email_validator'
 
 group :development, :test do
   gem 'byebug'

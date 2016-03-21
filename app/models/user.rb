@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     content_type: { content_type: /\Aimage\/png\Z|\Aimage\/jpe?g\Z/ },
     file_name: { matches: [/png\Z/, /jpe?g\Z/] }
 
-  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :email, email: true, presence: true, uniqueness: { case_sensitive: false }
 
   validates :name, presence: true
 end
