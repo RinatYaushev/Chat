@@ -3,12 +3,7 @@ class RoomDecorator < Draper::Decorator
 
   decorates_association :users
 
-  def as_json params = {}
-    {
-      id: id,
-      name: name
-    }.tap do |hash|
-      hash[:users] = users unless params[:brief]
-    end
+  def as_json *args
+    super only: [:id, :name], methods: [:users]
   end
 end

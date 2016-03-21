@@ -4,7 +4,7 @@ describe MessageDecorator do
   describe '#as_json' do
     let(:message) { stub_model Message, id: 1, content: 'test_msg', user_id: 18, room_id: 19 }
 
-    subject { message.decorate.as_json }
+    subject { message.decorate.as_json.symbolize_keys }
 
     its([:id]) { should eq 1 }
 

@@ -36,7 +36,7 @@ describe Ability do
   context do
     let(:room) { stub_model Room, users: [user] }
 
-    let(:ping) { stub_model Message, room: room }
+    let(:ping) { stub_model Ping, room: room }
 
     it { should be_able_to :manage, ping }
   end
@@ -44,7 +44,7 @@ describe Ability do
   context do
     let(:room) { stub_model Room }
 
-    let(:ping) { stub_model Message, room: room }
+    let(:ping) { stub_model Ping, room: room }
 
     it { should_not be_able_to :manage, ping }
   end

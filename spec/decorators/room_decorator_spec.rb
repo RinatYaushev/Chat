@@ -2,28 +2,17 @@ require 'rails_helper'
 
 describe RoomDecorator do
   describe '#as_json' do
-    let(:room) { stub_model Room, id: 1, name: 'test_room' }
+    let(:room) { stub_model Room, id: 12, name: 'test_room' }
 
-    subject { room.decorate.as_json }
+    subject { room.decorate }
 
-    its([:id]) { should eq 1 }
+    before { expect(subject).to receive(:users).and_return(:users) }
 
-    its([:name]) { should eq 'test_room' }
-
-    context do
-      let(:decorated) { room.decorate }
-
-      before { expect(decorated).to receive(:users).and_return(:users) }
-
-      subject { decorated.as_json }
-
-      its([:users]) { should eq :users }
-    end
-
-    context do
-      subject { room.decorate.as_json brief: true }
-
-      its([:users]) { should be_nil }
+    its('as_json.symbolize_keys') do
+      should eq \
+        id: 12,
+        name: 'test_room',
+        users: :users
     end
   end
 end
