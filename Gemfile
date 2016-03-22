@@ -9,6 +9,7 @@ gem 'cancancan'
 gem 'paperclip'
 gem 'rails-observers'
 gem 'email_validator'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug'

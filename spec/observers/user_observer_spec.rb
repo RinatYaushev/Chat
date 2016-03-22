@@ -9,7 +9,7 @@ RSpec.describe UserObserver, type: :observer do
       # WelcomeMailer.email(user).deliver_now
       #
       expect(WelcomeMailer).to receive(:email).with(user) do
-        double.tap { |a| expect(a).to receive(:deliver_now) }
+        double.tap { |a| expect(a).to receive(:deliver_later) }
       end
     end
 
