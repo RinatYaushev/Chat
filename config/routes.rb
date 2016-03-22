@@ -25,5 +25,7 @@ Rails.application.routes.draw do
         concerns :votable
       end
     end
+
+    resources :products, except: [:new, :edit]
   end
 end

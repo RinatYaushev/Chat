@@ -103,3 +103,16 @@ end
     )
   end
 end
+
+Product.create!([
+  {
+    name: 'Book',
+    price: '100'
+  }, {
+    name: 'Table',
+    price: '700'
+  }, {
+    name: 'Pen',
+    price: '15'
+  }
+])
