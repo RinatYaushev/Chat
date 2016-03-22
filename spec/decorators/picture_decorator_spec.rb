@@ -10,9 +10,7 @@ describe PictureDecorator, type: :decorator do
     # picture.image.url(:original) -> 'http://test.host/original.jpeg'
     #
     expect(picture).to receive(:image) do
-      double.tap do |a|
-        expect(a).to receive(:url).with(:original).and_return('http://test.host/original.jpeg')
-      end
+      double.tap { |a| expect(a).to receive(:url).with(:original).and_return('http://test.host/original.jpeg') }
     end
   end
 

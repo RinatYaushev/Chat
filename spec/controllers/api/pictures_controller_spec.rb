@@ -25,9 +25,7 @@ RSpec.describe Api::PicturesController, type: :controller do
       #subject.collection.new -> picture
       #
       expect(subject).to receive(:collection) do
-        double.tap do |a|
-          expect(a).to receive(:new).with(params).and_return(picture)
-        end
+        double.tap { |a| expect(a).to receive(:new).with(params).and_return(picture) }
       end
     end
 

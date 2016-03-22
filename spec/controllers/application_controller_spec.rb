@@ -9,9 +9,7 @@ RSpec.describe ApplicationController, type: :controller do
       # User.joins(:auth_token).find_by(auth_tokens: { value: 'token' })
       #
       expect(User).to receive(:joins).with(:auth_token) do
-        double.tap do |a|
-          expect(a).to receive(:find_by).with(auth_tokens: { value: 'token' })
-        end
+        double.tap { |a| expect(a).to receive(:find_by).with(auth_tokens: { value: 'token' }) }
       end
     end
 
@@ -26,9 +24,7 @@ RSpec.describe ApplicationController, type: :controller do
       expect(subject).to receive(:request) do
         double.tap do |a|
           expect(a).to receive(:format) do
-            double.tap do |b|
-              expect(b).to receive(:json?).and_return(true)
-            end
+            double.tap { |b| expect(b).to receive(:json?).and_return(true) }
           end
         end
       end

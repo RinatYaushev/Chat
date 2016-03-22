@@ -25,9 +25,7 @@ RSpec.describe Api::MessagesController, type: :controller do
       #subject.collection.new -> message
       #
       expect(subject).to receive(:collection) do
-        double.tap do |a|
-          expect(a).to receive(:new).with(params).and_return(message)
-        end
+        double.tap { |a| expect(a).to receive(:new).with(params).and_return(message) }
       end
     end
 

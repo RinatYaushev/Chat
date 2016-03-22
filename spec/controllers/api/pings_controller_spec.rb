@@ -23,9 +23,7 @@ RSpec.describe Api::PingsController, type: :controller do
       #subject.collection.new -> ping
       #
       expect(subject).to receive(:collection) do
-        double.tap do |a|
-          expect(a).to receive(:new).with(user: subject.current_user).and_return(ping)
-        end
+        double.tap { |a| expect(a).to receive(:new).with(user: subject.current_user).and_return(ping) }
       end
     end
 

@@ -71,9 +71,7 @@ RSpec.describe Session, type: :lib do
       expect(subject).to receive(:user) do
         double.tap do |a|
           expect(a).to receive(:auth_token) do
-            double.tap do |b|
-              expect(b).to receive(:destroy!)
-            end
+            double.tap { |b| expect(b).to receive(:destroy!) }
           end
         end
       end

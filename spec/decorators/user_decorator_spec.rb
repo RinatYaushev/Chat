@@ -24,9 +24,7 @@ describe UserDecorator, type: :decorator do
         # user.avatar.url(:orginal) -> 'http://test.host/original.jpeg'
         #
         expect(user).to receive(:avatar) do
-          double.tap do |a|
-            expect(a).to receive(:url).with(:original).and_return('http://test.host/original.jpeg')
-          end
+          double.tap { |a| expect(a).to receive(:url).with(:original).and_return('http://test.host/original.jpeg') }
         end
       end
 
