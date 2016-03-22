@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PictureDecorator do
+describe PictureDecorator, type: :decorator do
   let(:picture) { stub_model Picture, id: 25 }
 
   subject { picture.decorate }

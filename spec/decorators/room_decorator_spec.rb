@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RoomDecorator do
+describe RoomDecorator, type: :decorator do
   describe '#as_json' do
     let(:room) { stub_model Room, id: 12, name: 'test_room' }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Ability do
+describe Ability, type: :model do
   subject { Ability.new user }
 
   let(:user) { stub_model User }

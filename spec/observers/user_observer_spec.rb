@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UserObserver do
+RSpec.describe UserObserver, type: :observer do
   describe '#after_create' do
     let(:user) { stub_model(User, valid?: true).as_new_record }
 

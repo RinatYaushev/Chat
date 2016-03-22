@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UserDecorator do
+describe UserDecorator, type: :decorator do
   describe '#as_json' do
     let(:user) { stub_model User, id: 1, email: 'test@example.com', name: 'Test', messages_count: 0, pings_count: 0, pictures_count: 0 }
 

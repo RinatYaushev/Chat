@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MessageDecorator do
+describe MessageDecorator, type: :decorator do
   describe '#as_json' do
     let(:message) { stub_model Message, id: 1, content: 'test_msg', user_id: 18, room_id: 19 }
 

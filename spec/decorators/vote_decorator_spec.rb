@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe VoteDecorator do
+describe VoteDecorator, type: :decorator do
   describe '#as_json' do
     let(:vote) { stub_model Vote, id: 1, kind: 0, user_id: 1 }
 

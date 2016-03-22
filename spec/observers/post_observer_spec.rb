@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostObserver do
+RSpec.describe PostObserver, type: :observer do
   describe '#after_create' do
     let(:post) { stub_model(Post, valid?: true).as_new_record }
 
