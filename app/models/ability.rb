@@ -19,5 +19,7 @@ class Ability
     can :manage, Picture do |picture|
       picture.room.user_ids.include?(user.id)
     end
+
+    can :manage, Order, user_id: user.id
   end
 end

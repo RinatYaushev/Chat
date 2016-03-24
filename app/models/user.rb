@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
 
   has_many :pings, dependent: :destroy
 
+  has_many :purchases, dependent: :destroy
+
+  has_many :orders, dependent: :destroy
+
   has_attached_file :avatar,
     default_url: '/images/:style/missing.png',
     convert_options: { all: '-strip' }

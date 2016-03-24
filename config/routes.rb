@@ -27,5 +27,9 @@ Rails.application.routes.draw do
     end
 
     resources :products, except: [:new, :edit]
+
+    resources :purchases, except: [:new, :edit]
+
+    resources :orders, except: [:new, :update, :edit]
   end
 end

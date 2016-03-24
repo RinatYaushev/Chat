@@ -64,4 +64,16 @@ describe Ability, type: :model do
 
     it { should_not be_able_to :manage, picture }
   end
+
+  context do
+    let(:order) { stub_model Order, user: user }
+
+    it { should be_able_to :manage, order }
+  end
+
+  context do
+    let(:order) { stub_model Order }
+
+    it { should_not be_able_to :manage, order }
+  end
 end

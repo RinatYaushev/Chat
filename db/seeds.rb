@@ -116,3 +116,35 @@ Product.create!([
     price: '15'
   }
 ])
+
+Purchase.create!([
+  {
+    user: User.find_by(name: 'Ann'),
+    product: Product.find_by(name: 'Book'),
+    quantity: '10',
+  }, {
+    user: User.find_by(name: 'Ann'),
+    product: Product.find_by(name: 'Table'),
+    quantity: '2'
+  }, {
+    user: User.find_by(name: 'Ann'),
+    product: Product.find_by(name: 'Pen'),
+    quantity: '25'
+  }
+])
+
+Purchase.create!([
+  {
+    user: User.find_by(name: 'Bob'),
+    product: Product.find_by(name: 'Book'),
+    quantity: '100',
+  }, {
+    user: User.find_by(name: 'Bob'),
+    product: Product.find_by(name: 'Table'),
+    quantity: '20'
+  }, {
+    user: User.find_by(name: 'Bob'),
+    product: Product.find_by(name: 'Pen'),
+    quantity: '2500'
+  }
+])

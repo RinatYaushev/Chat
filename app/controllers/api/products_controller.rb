@@ -2,7 +2,7 @@ class Api::ProductsController < ApplicationController
   private
 
   def collection
-    @products = Product.all
+    @products ||= Product.all
   end
 
   def build_resource

@@ -23,6 +23,10 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:pings).dependent(:destroy) }
 
+  it { should have_many(:purchases).dependent(:destroy) }
+
+  it { should have_many(:orders).dependent(:destroy) }
+
   it { should have_attached_file :avatar }
 
   it do

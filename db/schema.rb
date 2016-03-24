@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322142127) do
+ActiveRecord::Schema.define(version: 20160323122257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20160322142127) do
   add_index "memberships", ["room_id"], name: "index_memberships_on_room_id", using: :btree
   add_index "memberships", ["user_id", "room_id"], name: "index_memberships_on_user_id_and_room_id", unique: true, using: :btree
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "content"
     t.string   "type"
@@ -56,6 +64,17 @@ ActiveRecord::Schema.define(version: 20160322142127) do
     t.integer "price"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "quantity",   default: 0
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "order_id"
+  end
+
+  add_index "purchases", ["order_id"], name: "index_purchases_on_order_id", using: :btree
+  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id", using: :btree
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
+
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -68,6 +87,8 @@ ActiveRecord::Schema.define(version: 20160322142127) do
     t.string   "password_digest"
     t.integer  "messages_count",      default: 0
     t.integer  "pings_count",         default: 0
+    t.integer  "purchases_count",     default: 0
+    t.integer  "orders_count",        default: 0
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
