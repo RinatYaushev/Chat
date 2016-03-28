@@ -13,6 +13,12 @@ RSpec.describe User, type: :model do
 
   it { should validate_presence_of :name }
 
+  it { should allow_value('+380681234567').for(:phone) }
+
+  it { should_not allow_value('1234567').for(:phone) }
+
+  it { should allow_value(nil).for(:phone) }
+
   it { should have_one(:auth_token).dependent(:destroy) }
 
   it { should have_many(:rooms).through(:memberships) }

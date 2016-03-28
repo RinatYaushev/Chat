@@ -11,7 +11,8 @@ RSpec.describe Api::UsersController, type: :controller do
         email: 'test@example.com',
         name: 'Test name',
         password: '12345678',
-        password_confirmation: '12345678'
+        password_confirmation: '12345678',
+        phone: '+380971234567'
       }
     end
 

@@ -3,17 +3,20 @@ User.create!([
     email: 'bob@example.com',
     name: 'Bob',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
+    phone: '+380679876543'
   }, {
     email: 'john@example.com',
     name: 'John',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
+    phone: '+380971234567'
   }, {
     email: 'ann@example.com',
     name: 'Ann',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
+    phone: '+380681472583'
   }
 ])
 

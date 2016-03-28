@@ -12,6 +12,6 @@ class Api::UsersController < ApplicationController
   end
 
   def resource_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation)
+    params.require(:user).permit(:email, :name, :password, :password_confirmation, :phone)
   end
 end

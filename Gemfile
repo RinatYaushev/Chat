@@ -10,6 +10,7 @@ gem 'paperclip'
 gem 'rails-observers'
 gem 'email_validator'
 gem 'sidekiq'
+gem 'global_phone'
 
 group :development, :test do
   gem 'byebug'
