@@ -6,6 +6,6 @@ class Api::WomenController < ApplicationController
   end
 
   def collection
-    @women ||= parent.users.female
+    @women ||= parent.women
   end
 end

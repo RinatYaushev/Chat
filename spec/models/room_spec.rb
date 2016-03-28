@@ -11,6 +11,10 @@ RSpec.describe Room, type: :model do
 
   it { should have_many(:pings).dependent(:destroy) }
 
+  it { should have_many(:men).class_name('User').through(:memberships).source(:user) }
+
+  it { should have_many(:women).class_name('User').through(:memberships).source(:user) }
+
   context do
     let(:room) { stub_model Room }
 

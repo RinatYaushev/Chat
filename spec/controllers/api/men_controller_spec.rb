@@ -24,14 +24,10 @@ RSpec.describe Api::MenController, type: :controller do
   describe '#collection' do
     before do
       #
-      # subject.parent.users.male -> :men
+      # subject.parent.men -> :men
       #
       expect(subject).to receive(:parent) do
-        double.tap do |a|
-          expect(a).to receive(:users) do
-            double.tap { |b| expect(b).to receive(:male).and_return(:men) }
-          end
-        end
+        double.tap { |a| expect(a).to receive(:men).and_return(:men) }
       end
     end
 

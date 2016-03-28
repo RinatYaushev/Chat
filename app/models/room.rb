@@ -9,6 +9,10 @@ class Room < ActiveRecord::Base
 
   has_many :pictures, dependent: :destroy
 
+  has_many :men, -> { male }, class_name: 'User', through: :memberships, source: :user
+
+  has_many :women, -> { female }, class_name: 'User', through: :memberships, source: :user
+
   validates :name, presence: true
 
   validates :memberships, length: { minimum: 2, message: 'Cannot be 1 user' }
