@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(version: 20160323122257) do
   add_index "memberships", ["user_id", "room_id"], name: "index_memberships_on_user_id_and_room_id", unique: true, using: :btree
 
   create_table "orders", force: :cascade do |t|
+    t.decimal  "total",      precision: 10, scale: 2
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -61,11 +62,12 @@ ActiveRecord::Schema.define(version: 20160323122257) do
 
   create_table "products", force: :cascade do |t|
     t.string  "name"
-    t.integer "price"
+    t.decimal "price", precision: 10, scale: 2
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "quantity",   default: 0
+    t.integer "quantity",                            default: 0
+    t.decimal "sum",        precision: 10, scale: 2
     t.integer "user_id"
     t.integer "product_id"
     t.integer "order_id"

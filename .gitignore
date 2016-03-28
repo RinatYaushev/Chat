@@ -12,4 +12,5 @@
 !/log/.keep
 /tmp
 .byebug_history
+arrays.rb
 /public/*

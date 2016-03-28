@@ -4,6 +4,6 @@ class OrderDecorator < Draper::Decorator
   decorates_association :purchases
 
   def as_json *args
-    super only: [:id, :user_id], methods: [:purchases]
+    super only: [:id, :user_id, :total], methods: [:purchases]
   end
 end

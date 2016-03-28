@@ -9,5 +9,13 @@ class Purchase < ActiveRecord::Base
 
   validates :product_id, uniqueness: { scope: [:user_id, :order_id] }
 
+  validates :quantity, numericality: { greater_than: 0 }
+
   scope :cart, -> { where(order_id: nil) }
+
+  before_save :calculate_sum
+
+  def calculate_sum
+    self.sum = (quantity * product.price).to_f
+  end
 end

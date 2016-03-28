@@ -1,8 +1,6 @@
 class Api::OrdersController < ApplicationController
   load_and_authorize_resource
 
-  skip_load_resource only: :create
-
   private
 
   def collection
@@ -10,7 +8,7 @@ class Api::OrdersController < ApplicationController
   end
 
   def build_resource
-    @order = collection.build(purchase_ids: current_user.purchases.cart.pluck(:id))
+    @order = collection.build(purchases: current_user.purchases.cart)
   end
 
   def resource

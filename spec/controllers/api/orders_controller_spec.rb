@@ -11,7 +11,9 @@ RSpec.describe Api::OrdersController, type: :controller do
 
   let(:order) { stub_model Order }
 
-  before { sign_in }
+  let(:user) { stub_model User }
+
+  before { sign_in user }
 
   describe '#index.json' do
     before { get :index, format: :json }
@@ -32,7 +34,20 @@ RSpec.describe Api::OrdersController, type: :controller do
   describe '#create.json' do
     before { expect(subject.current_ability).to receive(:can?).with(:create, Order).and_return(true) }
 
-    before { expect(Order).to receive(:new).with(:purchase_ids => []).and_return(order) }
+    before do
+      #
+      # user.purchases.cart -> :purchases
+      #
+      expect(user).to receive(:purchases) do
+        double.tap { |a| expect(a).to receive(:cart).and_return(:purchases) }
+      end
+    end
+
+    before do
+      expect(user).to receive(:orders) do
+        double.tap { |a| expect(a).to receive(:build).with(purchases: :purchases).and_return(order) }
+      end
+    end
 
     before { expect(order).to receive(:save!) }
 
@@ -42,6 +57,8 @@ RSpec.describe Api::OrdersController, type: :controller do
   end
 
   describe '#destroy.json' do
+    before { expect(subject.current_ability).to receive(:can?).with(:destroy, Order).and_return(true) }
+
     before { expect(Order).to receive(:find).with('8').and_return(order) }
 
     before { expect(order).to receive(:destroy!) }

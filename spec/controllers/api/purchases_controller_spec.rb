@@ -28,7 +28,7 @@ RSpec.describe Api::PurchasesController, type: :controller do
   end
 
   describe '#create.json' do
-    let(:params) { { user: subject.current_user, product_id: 50, order_id: 41, quantity: 5 } }
+    let(:params) { { user: subject.current_user, product_id: 50, quantity: 5 } }
 
     before { expect(Purchase).to receive(:new).with(params).and_return(purchase) }
 
@@ -40,7 +40,7 @@ RSpec.describe Api::PurchasesController, type: :controller do
   end
 
   describe '#update.json' do
-    let(:params) { { user: subject.current_user, product_id: 12, order_id: 41, quantity: 10 } }
+    let(:params) { { user: subject.current_user, product_id: 12, quantity: 10 } }
 
     before { expect(Purchase).to receive(:find).with('19').and_return(purchase) }
 

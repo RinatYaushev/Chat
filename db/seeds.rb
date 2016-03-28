@@ -122,14 +122,17 @@ Purchase.create!([
     user: User.find_by(name: 'Ann'),
     product: Product.find_by(name: 'Book'),
     quantity: '10',
+    sum: '1000'
   }, {
     user: User.find_by(name: 'Ann'),
     product: Product.find_by(name: 'Table'),
-    quantity: '2'
+    quantity: '2',
+    sum: '1400'
   }, {
     user: User.find_by(name: 'Ann'),
     product: Product.find_by(name: 'Pen'),
-    quantity: '25'
+    quantity: '25',
+    sum: '375'
   }
 ])
 
@@ -138,13 +141,16 @@ Purchase.create!([
     user: User.find_by(name: 'Bob'),
     product: Product.find_by(name: 'Book'),
     quantity: '100',
+    sum: '10000'
   }, {
     user: User.find_by(name: 'Bob'),
     product: Product.find_by(name: 'Table'),
-    quantity: '20'
+    quantity: '20',
+    sum: '14000'
   }, {
     user: User.find_by(name: 'Bob'),
     product: Product.find_by(name: 'Pen'),
-    quantity: '2500'
+    quantity: '2500',
+    sum: '37500'
   }
 ])

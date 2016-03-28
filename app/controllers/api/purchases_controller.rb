@@ -14,6 +14,6 @@ class Api::PurchasesController < ApplicationController
   end
 
   def resource_params
-    params.require(:purchase).permit(:product_id, :order_id, :quantity).merge(user: current_user)
+    params.require(:purchase).permit(:product_id, :quantity).merge(user: current_user)
   end
 end
