@@ -5,21 +5,21 @@ User.create!([
     password: 'password',
     password_confirmation: 'password',
     phone: '+380679876543',
-    gender: 'male'
+    gender: 'man'
   }, {
     email: 'john@example.com',
     name: 'John',
     password: 'password',
     password_confirmation: 'password',
     phone: '+380971234567',
-    gender: 'male'
+    gender: 'man'
   }, {
     email: 'ann@example.com',
     name: 'Ann',
     password: 'password',
     password_confirmation: 'password',
     phone: '+380681472583',
-    gender: 'female'
+    gender: 'woman'
   }
 ])
 

@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
 
   it { should allow_value(nil).for(:phone) }
 
-  it { should define_enum_for(:gender).with([:male, :female]) }
+  it { should define_enum_for(:gender).with([:man, :woman]) }
 
   it { should validate_presence_of :gender }
 

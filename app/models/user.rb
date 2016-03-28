@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :orders, dependent: :destroy
 
-  enum gender: [:male, :female]
+  enum gender: [:man, :woman]
 
   has_attached_file :avatar,
     default_url: '/images/:style/missing.png',
