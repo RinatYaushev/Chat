@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UserDecorator, type: :decorator do
   describe '#as_json' do
-    let(:user) { stub_model User, id: 1, email: 'test@example.com', name: 'Test',
+    let(:user) { stub_model User, id: 1, email: 'test@example.com', name: 'Test', gender: 'male',
       messages_count: 0, pings_count: 0, pictures_count: 0, purchases_count: 0, orders_count: 0, phone: '+380971234567' }
 
     subject { user.decorate.as_json.symbolize_keys }
@@ -12,6 +12,8 @@ describe UserDecorator, type: :decorator do
     its([:email]) { should eq 'test@example.com' }
 
     its([:name]) { should eq 'Test' }
+
+    its([:gender]) { should eq 'male' }
 
     its([:messages_count]) { should eq 0 }
 

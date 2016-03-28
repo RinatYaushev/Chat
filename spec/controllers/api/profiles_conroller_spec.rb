@@ -14,7 +14,8 @@ RSpec.describe Api::ProfilesController, type: :controller do
         name: 'Test name',
         password: '12345678',
         password_confirmation: '12345678',
-        phone: '+380971234567'
+        phone: '+380971234567',
+        gender: 'female'
       }
     end
 

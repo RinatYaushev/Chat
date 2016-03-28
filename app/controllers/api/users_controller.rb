@@ -3,6 +3,14 @@ class Api::UsersController < ApplicationController
 
   private
 
+  def parent
+    @room = Room.find(params[:room_id])
+  end
+
+  def collection
+    @users = parent.users
+  end
+
   def build_resource
     @user = User.new(resource_params)
   end
@@ -12,6 +20,6 @@ class Api::UsersController < ApplicationController
   end
 
   def resource_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation, :phone)
+    params.require(:user).permit(:email, :name, :password, :password_confirmation, :phone, :gender)
   end
 end

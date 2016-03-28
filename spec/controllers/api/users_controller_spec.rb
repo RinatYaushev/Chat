@@ -12,7 +12,8 @@ RSpec.describe Api::UsersController, type: :controller do
         name: 'Test name',
         password: '12345678',
         password_confirmation: '12345678',
-        phone: '+380971234567'
+        phone: '+380971234567',
+        gender: 'female'
       }
     end
 
@@ -27,14 +28,41 @@ RSpec.describe Api::UsersController, type: :controller do
     it { should render_template :create }
   end
 
-  context do
-    before { sign_in }
+  before { sign_in }
 
-    describe '#show.json' do
-      before { get :show, id: 1, format: :json }
+  describe '#index.json' do
+    before { get :index, room_id: 34, format: :json }
 
-      it { should render_template :show }
+    it { should render_template :index }
+  end
+
+  describe '#show.json' do
+    before { get :show, id: 1, format: :json }
+
+    it { should render_template :show }
+  end
+
+  describe '#parent' do
+    let(:room) { stub_model Room }
+
+    before { expect(subject).to receive(:params).and_return(room_id: 38) }
+
+    before { expect(Room).to receive(:find).with(38).and_return(:room) }
+
+    its(:parent) { should eq :room }
+  end
+
+  describe '#collection' do
+    before do
+      #
+      # subject.parent.users -> :users
+      #
+      expect(subject).to receive(:parent) do
+        double.tap { |a| expect(a).to receive(:users).and_return(:users) }
+      end
     end
+
+    its(:collection) { should eq :users }
   end
 
   describe '#resource' do

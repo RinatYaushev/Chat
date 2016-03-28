@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :orders, dependent: :destroy
 
+  enum gender: [:male, :female]
+
   has_attached_file :avatar,
     default_url: '/images/:style/missing.png',
     convert_options: { all: '-strip' }
@@ -25,7 +27,7 @@ class User < ActiveRecord::Base
 
   validates :email, email: true, presence: true, uniqueness: { case_sensitive: false }
 
-  validates :name, presence: true
+  validates :name, :gender, presence: true
 
   validates :phone, phone: true
 end

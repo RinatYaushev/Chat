@@ -24,6 +24,12 @@ Rails.application.routes.draw do
       resources :pictures, only: [:create, :index] do
         concerns :votable
       end
+
+      resources :men, only: :index
+
+      resources :women, only: :index
+
+      resources :users, only: :index
     end
 
     resources :products, except: [:new, :edit]
