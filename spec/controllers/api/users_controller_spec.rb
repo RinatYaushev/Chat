@@ -5,6 +5,8 @@ RSpec.describe Api::UsersController, type: :controller do
 
   it { should route(:get, '/api/users/1').to(action: :show, id: 1) }
 
+  it { should route(:get, '/api/rooms/1/users').to(action: :index, room_id: 1) }
+
   describe '#create.json' do
     let(:params) do
       {
