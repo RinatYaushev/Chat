@@ -3,11 +3,11 @@ class Api::VotesController < ApplicationController
 
   def parent
     if params[:message_id]
-      @message = Message.find(params[:message_id])
+      @message ||= Message.find(params[:message_id])
     elsif params[:ping_id]
-      @ping = Ping.find(params[:ping_id])
+      @ping ||= Ping.find(params[:ping_id])
     elsif params[:picture_id]
-      @picture = Picture.find(params[:picture_id])
+      @picture ||= Picture.find(params[:picture_id])
     end
   end
 

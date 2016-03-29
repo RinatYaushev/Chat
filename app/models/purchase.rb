@@ -15,6 +15,8 @@ class Purchase < ActiveRecord::Base
 
   before_save :calculate_sum
 
+  private
+
   def calculate_sum
     self.sum = (quantity * product.price).to_f
   end

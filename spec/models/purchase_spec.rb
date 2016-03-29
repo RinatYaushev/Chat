@@ -32,7 +32,7 @@ RSpec.describe Purchase, type: :model do
   describe '#calculate_sum' do
     subject { stub_model Purchase, quantity: 10, product: stub_model(Product, price: 15.25) }
 
-    before { subject.calculate_sum }
+    before { subject.send :calculate_sum }
 
     its(:sum) { should eq 152.5 }
   end

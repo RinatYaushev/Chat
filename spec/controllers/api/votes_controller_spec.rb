@@ -15,7 +15,7 @@ RSpec.describe Api::VotesController, type: :controller do
 
       let(:vote) { double }
 
-      before { expect(Message).to receive(:find).with('7').and_return(message).twice }
+      before { expect(Message).to receive(:find).with('7').and_return(message) }
 
       before { expect(Vote).to receive(:find_or_initialize_by).
         with(votable_id: message.id, votable_type: message.type, user: subject.current_user).and_return(vote) }
@@ -34,7 +34,7 @@ RSpec.describe Api::VotesController, type: :controller do
 
       let(:vote) { double }
 
-      before { expect(Ping).to receive(:find).with('25').and_return(ping).twice }
+      before { expect(Ping).to receive(:find).with('25').and_return(ping) }
 
       before { expect(Vote).to receive(:find_or_initialize_by).
         with(votable_id: ping.id, votable_type: ping.type, user: subject.current_user).and_return(vote) }
@@ -53,7 +53,7 @@ RSpec.describe Api::VotesController, type: :controller do
 
       let(:vote) { double }
 
-      before { expect(Picture).to receive(:find).with('18').and_return(picture).twice }
+      before { expect(Picture).to receive(:find).with('18').and_return(picture) }
 
       before { expect(Vote).to receive(:find_or_initialize_by).
         with(votable_id: picture.id, votable_type: picture.type, user: subject.current_user).and_return(vote) }
