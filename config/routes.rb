@@ -32,7 +32,9 @@ Rails.application.routes.draw do
       resources :users, only: :index
     end
 
-    resources :products, except: [:new, :edit]
+    resources :products, except: [:new, :edit] do
+      resources :comments, only: [:create, :index]
+    end
 
     resources :purchases, except: [:new, :edit]
 

@@ -4,11 +4,11 @@ class Api::UsersController < ApplicationController
   private
 
   def parent
-    @room = Room.find(params[:room_id])
+    @room ||= Room.find(params[:room_id])
   end
 
   def collection
-    @users = parent.users
+    @users ||= parent.users
   end
 
   def build_resource

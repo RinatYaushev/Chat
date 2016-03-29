@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :orders, dependent: :destroy
 
+  has_many :comments, dependent: :destroy
+
   enum gender: [:man, :woman]
 
   has_attached_file :avatar,

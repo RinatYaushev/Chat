@@ -160,3 +160,22 @@ Purchase.create!([
     sum: '37500'
   }
 ])
+
+Comment.create!([
+  {
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna.',
+    user: User.find_by(name: 'Ann'),
+    product: Product.find_by(name: 'Book')
+  }, {
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna.',
+    user: User.find_by(name: 'Ann'),
+    product: Product.find_by(name: 'Book')
+  }, {
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna.',
+    user: User.find_by(name: 'Ann'),
+    product: Product.find_by(name: 'Book')
+  }
+])
