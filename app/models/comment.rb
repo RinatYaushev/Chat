@@ -5,7 +5,9 @@ class Comment < ActiveRecord::Base
 
   belongs_to :comment
 
-  has_many :replies, class_name: 'Comment', foreign_key: 'comment_id'
+  has_many :replies, class_name: 'Comment', foreign_key: :comment_id
 
-  validates :user, :product, :content, presence: true
+  validates :user, :content, presence: true
+
+  validates :product, presence: true, unless: :comment_id?
 end

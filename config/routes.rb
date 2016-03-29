@@ -36,6 +36,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :index]
     end
 
+    resources :comments, only: [] do
+      resources :replies, only: [:create, :index]
+    end
+
     resources :purchases, except: [:new, :edit]
 
     resources :orders, except: [:new, :update, :edit]

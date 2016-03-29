@@ -5,9 +5,9 @@ RSpec.describe Post, type: :model do
 
   it { should validate_presence_of :room }
 
-  describe '#create_job' do
-    subject { stub_model Post }
+  it { is_expected.to callback(:create_job).after(:commit) }
 
+  describe '#create_job' do
     before do
       #
       # PostMailer.email(subject).deliver_later
@@ -17,8 +17,6 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    # it do
-    #   expect { subject.save }.to_not raise_error
-    # end
+    it { expect { subject.send :create_job }.to_not raise_error }
   end
 end
