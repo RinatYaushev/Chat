@@ -4,6 +4,10 @@ class CommentDecorator < Draper::Decorator
   decorates_association :replies
 
   def as_json *args
-    super only: [:id, :content, :user_id, :product_id, :comment_id], methods: [:replies]
+    if product_id?
+      super only: [:id, :content, :user_id, :product_id], methods: [:replies]
+    else
+      super only: [:id, :content, :user_id, :parent_id], methods: [:replies]
+    end
   end
 end

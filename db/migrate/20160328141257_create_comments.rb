@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration
 
       t.references :user
       t.references :product
-      t.references :comment
+      t.references :parent
     end
   end
 end

@@ -20,6 +20,8 @@ class Ability
       picture.room.user_ids.include?(user.id)
     end
 
+    can :manage, Purchase, user_id: user.id
+
     can :manage, Order, user_id: user.id
   end
 end

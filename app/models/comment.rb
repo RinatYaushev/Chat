@@ -3,11 +3,11 @@ class Comment < ActiveRecord::Base
 
   belongs_to :product
 
-  belongs_to :comment
+  belongs_to :parent, class_name: 'Comment'
 
-  has_many :replies, class_name: 'Comment', foreign_key: :comment_id
+  has_many :replies, class_name: 'Comment', foreign_key: :parent_id
 
   validates :user, :content, presence: true
 
-  validates :product, presence: true, unless: :comment_id?
+  validates :product, presence: true, unless: :parent_id?
 end

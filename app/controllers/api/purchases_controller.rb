@@ -1,4 +1,6 @@
 class Api::PurchasesController < ApplicationController
+  load_and_authorize_resource
+
   private
 
   def collection
@@ -6,11 +8,11 @@ class Api::PurchasesController < ApplicationController
   end
 
   def build_resource
-    @purchase = Purchase.new(resource_params)
+    @purchase
   end
 
   def resource
-    @purchase ||= Purchase.find(params[:id])
+    @purchase
   end
 
   def resource_params

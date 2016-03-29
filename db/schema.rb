@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160328141257) do
     t.string  "content"
     t.integer "user_id"
     t.integer "product_id"
-    t.integer "comment_id"
+    t.integer "parent_id"
   end
 
   create_table "memberships", force: :cascade do |t|
