@@ -64,7 +64,14 @@ RSpec.describe Backoffice::UsersController, type: :controller do
   end
 
   describe '#collection' do
-    before { expect(Backoffice::User).to receive(:all).and_return(:users) }
+    before do
+      #
+      # Backoffice::User.all.active -> :users
+      #
+      expect(Backoffice::User).to receive(:all) do
+        double.tap { |a| expect(a).to receive(:active).and_return(:users) }
+      end
+    end
 
     its(:collection) { should eq :users }
   end

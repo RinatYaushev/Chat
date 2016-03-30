@@ -14,6 +14,6 @@ class Backoffice::BaseController < ApplicationController
   end
 
   def current_user
-    @current_user ||= Backoffice::User.find_by id: session[:backoffice_user_id]
+    @current_user ||= Backoffice::User.active.find_by id: session[:backoffice_user_id]
   end
 end

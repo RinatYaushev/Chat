@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   end
 
   namespace :backoffice do
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, except: [:new, :create]
 
     resource :session, only: [:new, :create, :destroy]
   end

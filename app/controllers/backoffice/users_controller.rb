@@ -8,10 +8,16 @@ class Backoffice::UsersController < Backoffice::BaseController
     end
   end
 
+  def destroy
+    resource.touch :deleted_at
+
+    redirect_to :backoffice
+  end
+
   private
 
   def collection
-    @users = Backoffice::User.all
+    @users = Backoffice::User.all.active
   end
 
   def resource

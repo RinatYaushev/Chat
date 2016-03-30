@@ -180,4 +180,18 @@ Comment.create!([
   }
 ])
 
-Backoffice::User.create! name: 'Admin', password: 'password', password_confirmation: 'password'
+Backoffice::User.create!([
+  {
+    name: 'Admin',
+    password: 'password',
+    password_confirmation: 'password'
+  }, {
+    name: 'Test',
+    password: 'password',
+    password_confirmation: 'password'
+  }, {
+    name: 'User',
+    password: 'password',
+    password_confirmation: 'password'
+  }
+])
