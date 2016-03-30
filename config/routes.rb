@@ -44,4 +44,12 @@ Rails.application.routes.draw do
 
     resources :orders, except: [:new, :update, :edit]
   end
+
+  namespace :backoffice do
+    resources :users, only: [:index, :show, :edit, :update]
+
+    resource :session, only: [:new, :create, :destroy]
+  end
+
+  get '/backoffice', to: 'backoffice/home#show'
 end

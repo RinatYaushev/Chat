@@ -1,0 +1,14 @@
+<li><%= link_to 'Home', :backoffice %></li>
+<li><%= link_to 'Users', [:backoffice, :users] %></li>
+
+<li class="active"><%= resource.name %></li>
+
+<div class="well clearfix">
+  <div class="pull-left">
+    <%= resource.name %>
+  </div>
+
+  <div class="pull-right">
+    <%= link_to 'Edit', [:edit, resource], class: 'btn btn-primary' %>
+  </div>
+</div>

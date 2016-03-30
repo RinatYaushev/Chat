@@ -179,3 +179,5 @@ Comment.create!([
     product: Product.find_by(name: 'Book')
   }
 ])
+
+Backoffice::User.create! name: 'Admin', password: 'password', password_confirmation: 'password'

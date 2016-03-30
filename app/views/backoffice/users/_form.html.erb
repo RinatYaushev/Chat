@@ -1,0 +1,11 @@
+<div class="well">
+  <%= simple_form_for resource, html: { class: 'form-vertical' }, wrapper: :vertical_form do |f| %>
+    <%= f.input :name %>
+
+    <%= f.input :password %>
+
+    <%= f.input :password_confirmation %>
+
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
