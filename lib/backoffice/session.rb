@@ -1,7 +1,6 @@
 module Backoffice
   class Session
     include ActiveModel::Model
-    include Draper::Decoratable
 
     attr_reader :username, :password
 

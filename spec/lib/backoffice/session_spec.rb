@@ -7,8 +7,6 @@ RSpec.describe Backoffice::Session, type: :lib do
 
   it { should be_a ActiveModel::Validations }
 
-  it { should be_a Draper::Decoratable }
-
   its(:username) { should eq 'Test' }
 
   its(:password) { should eq 'password' }

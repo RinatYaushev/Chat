@@ -1,5 +1,4 @@
 class Backoffice::UsersController < Backoffice::BaseController
-
   def update
     if resource.update(resource_params)
       redirect_to resource
