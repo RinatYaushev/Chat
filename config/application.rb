@@ -36,5 +36,7 @@ module Chat
     config.active_record.observers = :user_observer
 
     config.eager_load_paths << config.root.join('observers').to_s
+
+    config.eager_load_paths << config.root.join('patterns').to_s
   end
 end
