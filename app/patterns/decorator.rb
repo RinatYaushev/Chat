@@ -1,11 +1,11 @@
 module Decorator
   class ItemDecorator
-    def initialize(item)
+    def initialize item
       @item = item
     end
   end
 
-  class SwordDecorator < ItemDecorator
+  class SwordDecorator < Decorator::ItemDecorator
     def price
       @item.price * 3
     end
@@ -15,7 +15,7 @@ module Decorator
     end
   end
 
-  class BowDecorator < ItemDecorator
+  class BowDecorator < Decorator::ItemDecorator
     def price
       @item.price * 2
     end
@@ -36,8 +36,9 @@ module Decorator
 end
 
 item = Decorator::Item.new
+
 sword = Decorator::SwordDecorator.new(item)
-puts "#{sword.description} cost #{sword.price}"
+puts "You can buy #{sword.description} for #{sword.price}"
 
 bow = Decorator::BowDecorator.new(item)
-puts "#{bow.description} cost #{bow.price}"
+puts "You can buy #{bow.description} for #{bow.price}"

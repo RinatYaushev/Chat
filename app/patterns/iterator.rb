@@ -2,22 +2,20 @@ module Iterator
   class Hero
     attr_reader :name
 
-    def initialize(name)
+    def initialize name
       @name = name
     end
   end
 
   class Heroes
-    def initialize
-      @heroes = []
+    attr_reader :heroes
+
+    def initialize heroes = []
+      @heroes = heroes
     end
 
-    def add_hero(name)
-      @heroes << Iterator::Hero.new(name)
-    end
-
-    def heroes
-      @heroes
+    def add_hero name
+      heroes << Iterator::Hero.new(name)
     end
   end
 end

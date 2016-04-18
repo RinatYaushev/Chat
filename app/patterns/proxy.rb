@@ -8,7 +8,7 @@ module Proxy
   end
 
   class ComputerProxy
-    def initialize(user)
+    def initialize user
       @user = user
     end
 

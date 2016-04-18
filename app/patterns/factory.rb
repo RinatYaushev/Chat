@@ -13,19 +13,19 @@ module Factory
   end
 
   class Office
-    attr_reader :members
+    attr_reader :members, :factory
 
-    def initialize(factory)
-      @members = []
+    def initialize members = [], factory
+      @members = members
       @factory = factory
     end
 
-    def add_men(n)
-      n.times{ @members << @factory.create_man }
+    def add_men n
+      n.times{ members << factory.create_man }
     end
 
-    def add_women(n)
-      n.times{ @members << @factory.create_woman }
+    def add_women n
+      n.times{ members << factory.create_woman }
     end
   end
 end

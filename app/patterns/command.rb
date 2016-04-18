@@ -1,16 +1,18 @@
 module Command
   class Instruction
-    def initialize
-      @commands = []
+    attr_accessor :commands
+
+    def initialize commands = []
+      @commands = commands
     end
 
-    def run_command(command)
+    def run_command command
       command.execute
-      @commands << command
+      commands << command
     end
 
     def undo_command
-      @commands.pop.unexecute
+      commands.pop.unexecute
     end
   end
 
@@ -24,7 +26,7 @@ module Command
   end
 
   class DollarCommand
-    def initialize(amount)
+    def initialize amount
       @amount = amount
     end
 
@@ -38,7 +40,7 @@ module Command
   end
 
   class EuroCommand
-    def initialize(amount)
+    def initialize amount
       @amount = amount
     end
 

@@ -1,42 +1,44 @@
 module Composite
   class CompositeTask
-    def initialize
-      @tasks = []
+    attr_accessor :tasks
+
+    def initialize tasks = []
+      @tasks = tasks
     end
 
-    def add_task(task)
-      @tasks << task
+    def add_task task
+      tasks << task
     end
 
     def amount
-      @tasks.inject(0){ |sum, task| sum += task.amount }
+      tasks.inject(0){ |sum, task| sum += task.amount }
     end
   end
 
-  class Dough < CompositeTask
+  class Dough < Composite::CompositeTask
   end
 
-  class Butter < CompositeTask
+  class Butter < Composite::CompositeTask
   end
 
-  class Cake < CompositeTask
+  class Cake < Composite::CompositeTask
   end
 
-  class Ingredients
+  class Ingredient
     attr_reader :amount
 
-    def initialize(amount)
+    def initialize amount
       @amount = amount
     end
   end
 
-  class FirstIngredient < Ingredients
+  class FirstIngredient < Composite::Ingredient
   end
 
-  class SecondIngredient < Ingredients
+  class SecondIngredient < Composite::Ingredient
   end
 
-  class ThirdIngredient < Ingredients
+  class ThirdIngredient < Composite::Ingredient
   end
 end
 
