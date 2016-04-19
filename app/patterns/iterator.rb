@@ -20,10 +20,10 @@ module Iterator
   end
 end
 
-all = Iterator::Heroes.new
-all.add_hero('Warrior')
-all.add_hero('Mage')
-all.add_hero('Druid')
-all.add_hero('Shaman')
-all.add_hero('Rogue')
-all.heroes.each { |hero| puts hero.name }
+# all = Iterator::Heroes.new
+# all.add_hero('Warrior')
+# all.add_hero('Mage')
+# all.add_hero('Druid')
+# all.add_hero('Shaman')
+# all.add_hero('Rogue')
+# all.heroes.each { |hero| puts hero.name }

@@ -58,10 +58,10 @@ module Template
   end
 end
 
-warrior = Template::Warrior.new
-puts warrior.greet
-puts "I can strike for #{warrior.damage_rating} damage !!!"
+# warrior = Template::Warrior.new
+# puts warrior.greet
+# puts "I can strike for #{warrior.damage_rating} damage !!!"
 
-mage = Template::Mage.new
-puts mage.greet
-puts "I can cast fireball for #{mage.damage_rating} damage !!!"
+# mage = Template::Mage.new
+# puts mage.greet
+# puts "I can cast fireball for #{mage.damage_rating} damage !!!"

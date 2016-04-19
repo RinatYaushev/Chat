@@ -35,10 +35,10 @@ module Decorator
   end
 end
 
-item = Decorator::Item.new
+# item = Decorator::Item.new
 
-sword = Decorator::SwordDecorator.new(item)
-puts "You can buy #{sword.description} for #{sword.price}"
+# sword = Decorator::SwordDecorator.new(item)
+# puts "You can buy #{sword.description} for #{sword.price}"
 
-bow = Decorator::BowDecorator.new(item)
-puts "You can buy #{bow.description} for #{bow.price}"
+# bow = Decorator::BowDecorator.new(item)
+# puts "You can buy #{bow.description} for #{bow.price}"

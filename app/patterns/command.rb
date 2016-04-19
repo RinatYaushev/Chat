@@ -54,15 +54,15 @@ module Command
   end
 end
 
-instruction = Command::Instruction.new
-amount = Command::Amount.new
+# instruction = Command::Instruction.new
+# amount = Command::Amount.new
 
-instruction.run_command(Command::DollarCommand.new(amount))
-puts amount.dollar
+# instruction.run_command(Command::DollarCommand.new(amount))
+# puts amount.dollar
 
-puts instruction.undo_command
+# puts instruction.undo_command
 
-instruction.run_command(Command::EuroCommand.new(amount))
-puts amount.euro
+# instruction.run_command(Command::EuroCommand.new(amount))
+# puts amount.euro
 
-puts instruction.undo_command
+# puts instruction.undo_command

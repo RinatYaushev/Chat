@@ -27,12 +27,12 @@ module Builder
   end
 end
 
-builder = Builder::UserBuilder.new('Bob', 'Bobenko')
+# builder = Builder::UserBuilder.new('Bob', 'Bobenko')
 
-user = builder.user
-puts user.firstname
-puts user.lastname
+# user = builder.user
+# puts user.firstname
+# puts user.lastname
 
-builder.add_posts(10)
-builder.add_comments(7)
-puts "#{user.firstname} #{user.lastname} has #{user.posts.size} posts and #{user.comments.size} comments "
+# builder.add_posts(10)
+# builder.add_comments(7)
+# puts "#{user.firstname} #{user.lastname} has #{user.posts.size} posts and #{user.comments.size} comments "

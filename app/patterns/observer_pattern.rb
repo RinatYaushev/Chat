@@ -41,7 +41,7 @@ module ObserverPattern
   end
 end
 
-user = ObserverPattern::User.new('Bob', 'Bobenko', 30000)
-user.firstname = 'Vova'
-user.lastname = 'Vovenko'
-user.salary = 100000
+# user = ObserverPattern::User.new('Bob', 'Bobenko', 30000)
+# user.firstname = 'Vova'
+# user.lastname = 'Vovenko'
+# user.salary = 100000

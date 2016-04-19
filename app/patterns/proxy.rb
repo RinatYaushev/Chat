@@ -33,7 +33,7 @@ module Proxy
   end
 end
 
-user = Proxy::User.new
-proxy = Proxy::ComputerProxy.new(user)
-user.keywords << :some_keyword        # comment this line to check access
-proxy.execute
+# user = Proxy::User.new
+# proxy = Proxy::ComputerProxy.new(user)
+# user.keywords << :some_keyword        # comment this line to check access
+# proxy.execute

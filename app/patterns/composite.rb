@@ -42,17 +42,17 @@ module Composite
   end
 end
 
-dough = Composite::Dough.new
-dough.add_task(Composite::FirstIngredient.new 500)
-dough.add_task(Composite::SecondIngredient.new 300)
-puts "Now we have got #{dough.amount} of dough"
+# dough = Composite::Dough.new
+# dough.add_task(Composite::FirstIngredient.new 500)
+# dough.add_task(Composite::SecondIngredient.new 300)
+# puts "Now we have got #{dough.amount} of dough"
 
-butter = Composite::Butter.new
-butter.add_task(Composite::SecondIngredient.new 200)
-butter.add_task(Composite::ThirdIngredient.new 150)
-puts "Now we have got #{butter.amount} of butter"
+# butter = Composite::Butter.new
+# butter.add_task(Composite::SecondIngredient.new 200)
+# butter.add_task(Composite::ThirdIngredient.new 150)
+# puts "Now we have got #{butter.amount} of butter"
 
-cake = Composite::Cake.new
-cake.add_task(dough)
-cake.add_task(butter)
-puts "Finally our cake is ready and its big - #{cake.amount}"
+# cake = Composite::Cake.new
+# cake.add_task(dough)
+# cake.add_task(butter)
+# puts "Finally our cake is ready and its big - #{cake.amount}"

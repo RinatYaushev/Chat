@@ -28,8 +28,8 @@ module Strategy
   end
 end
 
-user = Strategy::User.new(Strategy::ActivityStats.new).print_stats
-puts user
+# user = Strategy::User.new(Strategy::ActivityStats.new).print_stats
+# puts user
 
-user = Strategy::User.new(Strategy::RolesStats.new).print_stats
-puts user
+# user = Strategy::User.new(Strategy::RolesStats.new).print_stats
+# puts user

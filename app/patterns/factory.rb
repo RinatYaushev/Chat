@@ -30,10 +30,10 @@ module Factory
   end
 end
 
-office = Factory::Office.new(Factory::PeopleFactory.new)
-office.add_men(25)
-office.add_women(15)
+# office = Factory::Office.new(Factory::PeopleFactory.new)
+# office.add_men(25)
+# office.add_women(15)
 
-puts office.members.size
-puts office.members.count{ |member| member.class == Factory::Man }
-puts office.members.count{ |member| member.class == Factory::Woman }
+# puts office.members.size
+# puts office.members.count{ |member| member.class == Factory::Man }
+# puts office.members.count{ |member| member.class == Factory::Woman }

@@ -82,16 +82,16 @@ module Test
   end
 end
 
-user = Test::User.new('Edward', 'edward@example.com')
+# user = Test::User.new('Edward', 'edward@example.com')
 
-subscriber_bob = Test::User.new('Bob', 'bob@example.com')
-subscriber_john = Test::User.new('John', 'john@example.com')
+# subscriber_bob = Test::User.new('Bob', 'bob@example.com')
+# subscriber_john = Test::User.new('John', 'john@example.com')
 
-user.add_subscriber(subscriber_bob)
-user.add_subscriber(subscriber_john)
+# user.add_subscriber(subscriber_bob)
+# user.add_subscriber(subscriber_john)
 
-post = Test::Post.new('Test post')
-another_post = Test::Post.new('Another post')
+# post = Test::Post.new('Test post')
+# another_post = Test::Post.new('Another post')
 
-user.add_post(post)
-user.add_post(another_post)
+# user.add_post(post)
+# user.add_post(another_post)

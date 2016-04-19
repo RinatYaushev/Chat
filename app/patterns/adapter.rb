@@ -58,14 +58,14 @@ module Adapter
   end
 end
 
-user = Adapter::User.new
-tax = Adapter::Tax.new user, 500
+# user = Adapter::User.new
+# tax = Adapter::Tax.new user, 500
 
-user.add_tax(tax)
-user.pay_tax(tax)
-puts user.pay
+# user.add_tax(tax)
+# user.pay_tax(tax)
+# puts user.pay
 
-old_tax_adapted = Adapter::TaxAdapter.new(user, Adapter::OldTax.new, 500)
-user.add_tax(old_tax_adapted)
-user.pay_tax(old_tax_adapted)
-puts user.pay
+# old_tax_adapted = Adapter::TaxAdapter.new(user, Adapter::OldTax.new, 500)
+# user.add_tax(old_tax_adapted)
+# user.pay_tax(old_tax_adapted)
+# puts user.pay
