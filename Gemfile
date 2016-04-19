@@ -16,6 +16,7 @@ gem 'uglifier'
 gem 'therubyracer'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'mailfactory'
 
 group :development, :test do
   gem 'byebug'
