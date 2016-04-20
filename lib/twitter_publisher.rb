@@ -1,0 +1,2 @@
+class TwitterPublisher < Publisher
+end

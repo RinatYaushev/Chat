@@ -1,0 +1,2 @@
+class FacebookPublisher < Publisher
+end

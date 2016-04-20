@@ -3,5 +3,9 @@ class PostObserver < ActiveRecord::Observer
     FollowerMailer.email(post).deliver_later
 
     PostMailer.email(post).deliver_later
+
+    FacebookPublisher.new(post.user, post).publish
+
+    TwitterPublisher.new(post.user, post).publish
   end
 end

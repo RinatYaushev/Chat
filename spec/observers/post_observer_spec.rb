@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe PostObserver, type: :observer do
   describe '#after_create' do
-    let(:post) { stub_model(Post, valid?: true).as_new_record }
+    let(:user) { stub_model User }
+
+    let(:post) { stub_model(Post, valid?: true, user: user).as_new_record }
 
     before do
       #
@@ -19,6 +21,24 @@ RSpec.describe PostObserver, type: :observer do
       #
       expect(PostMailer).to receive(:email).with(post) do
         double.tap { |a| expect(a).to receive(:deliver_later) }
+      end
+    end
+
+    before do
+      #
+      # FacebookPublisher.new(post.user, post).publish
+      #
+      expect(FacebookPublisher).to receive(:new).with(post.user, post) do
+        double.tap { |a| expect(a).to receive(:publish) }
+      end
+    end
+
+    before do
+      #
+      # TwitterPublisher.new(post.user, post).publish
+      #
+      expect(TwitterPublisher).to receive(:new).with(post.user, post) do
+        double.tap { |a| expect(a).to receive(:publish) }
       end
     end
 
