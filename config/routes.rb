@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
     resources :relationships, only: [:create, :destroy]
 
-    get :following, to: 'following#show'
+    resource :followers, only: :show
 
-    get :followers, to: 'followers#show'
+    resource :followees, only: :show
 
     resource :profile, only: [:show, :update] do
       resource :avatar, only: :update

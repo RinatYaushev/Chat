@@ -31,7 +31,7 @@ describe UserDecorator, type: :decorator do
 
     before { expect(subject).to receive(:followers_count).and_return(17) }
 
-    before { expect(subject).to receive(:following_count).and_return(44) }
+    before { expect(subject).to receive(:followees_count).and_return(44) }
 
     its('as_json.symbolize_keys') do
       should eq \
@@ -48,7 +48,7 @@ describe UserDecorator, type: :decorator do
       active_relationships: :active_relationships,
       avatar: 'http://test.host/original.jpeg',
       followers_count: 17,
-      following_count: 44
+      followees_count: 44
     end
   end
 end

@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
       dependent(:destroy)
   end
 
-  it { should have_many(:following).through(:active_relationships).source(:followee) }
+  it { should have_many(:followees).through(:active_relationships).source(:followee) }
 
   it { should have_many(:followers).through(:passive_relationships).source(:follower) }
 

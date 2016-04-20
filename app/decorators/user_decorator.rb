@@ -5,7 +5,7 @@ class UserDecorator < Draper::Decorator
 
   def as_json *args
     super only: %I[id email name gender messages_count pings_count pictures_count purchases_count orders_count phone],
-      methods: %I[avatar followers_count following_count active_relationships]
+      methods: %I[avatar followers_count followees_count active_relationships]
   end
 
   def avatar
@@ -16,7 +16,7 @@ class UserDecorator < Draper::Decorator
     followers.count
   end
 
-  def following_count
-    following.count
+  def followees_count
+    followees.count
   end
 end
