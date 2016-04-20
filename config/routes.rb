@@ -6,6 +6,12 @@ Rails.application.routes.draw do
 
     resources :users, only: [:create, :show]
 
+    resources :relationships, only: [:create, :destroy]
+
+    get :following, to: 'following#show'
+
+    get :followers, to: 'followers#show'
+
     resource :profile, only: [:show, :update] do
       resource :avatar, only: :update
     end
