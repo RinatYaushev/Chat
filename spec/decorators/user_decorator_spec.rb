@@ -20,6 +20,8 @@ describe UserDecorator, type: :decorator do
 
     before { expect(subject).to receive(:active_relationships).and_return(:active_relationships) }
 
+    before { expect(subject).to receive(:passive_relationships).and_return(:passive_relationships) }
+
     before do
       #
       # user.avatar.url(:orginal) -> 'http://test.host/original.jpeg'
@@ -46,6 +48,7 @@ describe UserDecorator, type: :decorator do
       orders_count: 9,
       phone: '+380971234567',
       active_relationships: :active_relationships,
+      passive_relationships: :passive_relationships,
       avatar: 'http://test.host/original.jpeg',
       followers_count: 17,
       followees_count: 44
