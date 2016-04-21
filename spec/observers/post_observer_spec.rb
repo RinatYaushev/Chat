@@ -24,23 +24,7 @@ RSpec.describe PostObserver, type: :observer do
       end
     end
 
-    before do
-      #
-      # FacebookPublisher.new(post.user, post).publish
-      #
-      expect(FacebookPublisher).to receive(:new).with(post.user, post) do
-        double.tap { |a| expect(a).to receive(:publish) }
-      end
-    end
-
-    before do
-      #
-      # TwitterPublisher.new(post.user, post).publish
-      #
-      expect(TwitterPublisher).to receive(:new).with(post.user, post) do
-        double.tap { |a| expect(a).to receive(:publish) }
-      end
-    end
+    before { expect(PublisherJob).to receive(:perform_later).with(post) }
 
     it do
       ActiveRecord::Base.observers.enable :post_observer do

@@ -1,8 +1,8 @@
 class Publisher
   attr_reader :user, :post
 
-  def initialize user, post
-    @user = user
+  def initialize post
+    @user = post.user
 
     @post = post
   end

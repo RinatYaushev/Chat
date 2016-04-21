@@ -33,6 +33,8 @@ module Chat
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.active_record.observers = :user_observer, :post_observer
 
     config.eager_load_paths << config.root.join('observers').to_s
