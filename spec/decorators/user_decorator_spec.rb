@@ -13,7 +13,9 @@ describe UserDecorator, type: :decorator do
         pictures_count: 38,
         purchases_count: 5,
         orders_count: 9,
-        phone: '+380971234567'
+        phone: '+380971234567',
+        followers_count: 17,
+        followees_count: 44
     end
 
     subject { user.decorate }
@@ -30,10 +32,6 @@ describe UserDecorator, type: :decorator do
         double.tap { |a| expect(a).to receive(:url).with(:original).and_return('http://test.host/original.jpeg') }
       end
     end
-
-    before { expect(subject).to receive(:followers_count).and_return(17) }
-
-    before { expect(subject).to receive(:followees_count).and_return(44) }
 
     its('as_json.symbolize_keys') do
       should eq \

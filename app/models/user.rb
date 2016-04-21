@@ -42,4 +42,12 @@ class User < ActiveRecord::Base
   validates :name, :gender, presence: true
 
   validates :phone, phone: true
+
+  def followers_count
+    followers.count
+  end
+
+  def followees_count
+    followees.count
+  end
 end

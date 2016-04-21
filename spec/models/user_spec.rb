@@ -64,4 +64,30 @@ RSpec.describe User, type: :model do
       allowing('image/png', 'image/jpeg', 'image/jpg').
       rejecting('image/gif', 'application/pdf')
   end
+
+  describe '#followers_count' do
+    before do
+      #
+      # subject.followers.count -> 56
+      #
+      expect(subject).to receive(:followers) do
+        double.tap { |a| expect(a).to receive(:count).and_return(56) }
+      end
+    end
+
+    its(:followers_count) { should eq 56 }
+  end
+
+  describe '#followees_count' do
+    before do
+      #
+      # subject.followees.count -> 57
+      #
+      expect(subject).to receive(:followees) do
+        double.tap { |a| expect(a).to receive(:count).and_return(57) }
+      end
+    end
+
+    its(:followees_count) { should eq 57 }
+  end
 end

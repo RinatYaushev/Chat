@@ -12,12 +12,4 @@ class UserDecorator < Draper::Decorator
   def avatar
     model.avatar.url :original
   end
-
-  def followers_count
-    followers.count
-  end
-
-  def followees_count
-    followees.count
-  end
 end
