@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  it { should belong_to(:follower).class_name('User') }
+  it { should belong_to(:follower).class_name('User').counter_cache(:followees_count) }
 
-  it { should belong_to(:followee).class_name('User') }
+  it { should belong_to(:followee).class_name('User').counter_cache(:followers_count) }
 
   it { should validate_presence_of(:follower_id) }
 

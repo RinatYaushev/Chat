@@ -5,8 +5,8 @@ class UserDecorator < Draper::Decorator
   decorates_association :passive_relationships
 
   def as_json *args
-    super only: %I[id email name gender messages_count pings_count pictures_count purchases_count orders_count phone],
-      methods: %I[avatar followers_count followees_count active_relationships passive_relationships]
+    super only: %I[id email name gender messages_count pings_count pictures_count purchases_count followers_count followees_count orders_count phone],
+      methods: %I[avatar active_relationships passive_relationships]
   end
 
   def avatar

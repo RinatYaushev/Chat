@@ -8,6 +8,8 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :pings_count, default: 0
       t.integer :purchases_count, default: 0
       t.integer :orders_count, default: 0
+      t.integer :followers_count, default: 0
+      t.integer :followees_count, default: 0
       t.attachment :avatar
 
       t.timestamps null: false

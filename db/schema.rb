@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(version: 20160419122810) do
     t.integer  "pings_count",         default: 0
     t.integer  "purchases_count",     default: 0
     t.integer  "orders_count",        default: 0
+    t.integer  "followers_count",     default: 0
+    t.integer  "followees_count",     default: 0
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
