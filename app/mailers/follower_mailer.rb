@@ -1,7 +1,7 @@
 class FollowerMailer < ApplicationMailer
-  def email post
-    @post = post
+  def email follower
+    @follower = follower
 
-    mail to: post.user.followers.pluck(:email), subject: 'New message'
+    mail to: follower.email, subject: 'New message'
   end
 end

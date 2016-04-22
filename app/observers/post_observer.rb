@@ -1,9 +1,11 @@
 class PostObserver < ActiveRecord::Observer
   def after_create post
-    FollowerMailer.email(post).deliver_later
+    ChatJob.perform_later(post)
 
-    PostMailer.email(post).deliver_later
+    FollowerJob.perform_later(post)
 
-    PublisherJob.perform_later(post)
+    FacebookPublisherJob.perform_later(post)
+
+    TwitterPublisherJob.perform_later(post)
   end
 end

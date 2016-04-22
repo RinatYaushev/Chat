@@ -6,6 +6,10 @@ RSpec.describe Recipients, type: :lib do
   subject { Recipients.new post }
 
   describe '#emails' do
+    let(:user) { double }
+
+    let(:other_user) { double }
+
     let(:first) { double }
 
     before { expect(User).to receive(:joins).with(:rooms).and_return(first) }
@@ -21,12 +25,8 @@ RSpec.describe Recipients, type: :lib do
       end
     end
 
-    let(:third) { double }
+    before { expect(second).to receive(:where).with(rooms: { id: 57 }).and_return([user, other_user]) }
 
-    before { expect(second).to receive(:where).with(rooms: { id: 57 }).and_return(third) }
-
-    before { expect(third).to receive(:pluck).with(:email).and_return(['one@digits.com']) }
-
-    its(:emails) { should eq ['one@digits.com'] }
+    its(:users) { should eq [user, other_user] }
   end
 end

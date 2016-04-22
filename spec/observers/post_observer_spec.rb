@@ -2,29 +2,15 @@ require 'rails_helper'
 
 RSpec.describe PostObserver, type: :observer do
   describe '#after_create' do
-    let(:user) { stub_model User }
+    let(:post) { stub_model(Post, valid?: true).as_new_record }
 
-    let(:post) { stub_model(Post, valid?: true, user: user).as_new_record }
+    before { expect(ChatJob).to receive(:perform_later).with(post) }
 
-    before do
-      #
-      # FollowerMailer.email(post).deliver_later
-      #
-      expect(FollowerMailer).to receive(:email).with(post) do
-        double.tap { |a| expect(a).to receive(:deliver_later) }
-      end
-    end
+    before { expect(FollowerJob).to receive(:perform_later).with(post) }
 
-    before do
-      #
-      # PostMailer.email(post).deliver_later
-      #
-      expect(PostMailer).to receive(:email).with(post) do
-        double.tap { |a| expect(a).to receive(:deliver_later) }
-      end
-    end
+    before { expect(FacebookPublisherJob).to receive(:perform_later).with(post) }
 
-    before { expect(PublisherJob).to receive(:perform_later).with(post) }
+    before { expect(TwitterPublisherJob).to receive(:perform_later).with(post) }
 
     it do
       ActiveRecord::Base.observers.enable :post_observer do
