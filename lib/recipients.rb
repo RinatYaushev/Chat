@@ -3,10 +3,9 @@ class Recipients
     @post = post
   end
 
-  def emails
+  def users
     User.joins(:rooms).
       where.not(users: { id: @post.user_id }).
-      where(rooms: { id: @post.room_id }).
-      pluck(:email)
+      where(rooms: { id: @post.room_id })
   end
 end
