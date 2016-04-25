@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
 
   enum gender: [:man, :woman]
 
+  bitmask :roles, as: [:administrator, :moderator, :user]
+
   has_attached_file :avatar,
     default_url: '/images/:style/missing.png',
     convert_options: { all: '-strip' }
@@ -42,4 +44,12 @@ class User < ActiveRecord::Base
   validates :name, :gender, presence: true
 
   validates :phone, phone: true
+
+  before_create :set_role
+
+  private
+
+  def set_role
+    roles << :user
+  end
 end

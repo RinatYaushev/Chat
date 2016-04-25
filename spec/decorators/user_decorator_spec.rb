@@ -15,7 +15,8 @@ describe UserDecorator, type: :decorator do
         orders_count: 9,
         phone: '+380971234567',
         followers_count: 17,
-        followees_count: 44
+        followees_count: 44,
+        roles: [:administrator, :moderator, :user]
     end
 
     subject { user.decorate }
@@ -49,7 +50,8 @@ describe UserDecorator, type: :decorator do
       passive_relationships: :passive_relationships,
       avatar: 'http://test.host/original.jpeg',
       followers_count: 17,
-      followees_count: 44
+      followees_count: 44,
+      roles: [:administrator, :moderator, :user]
     end
   end
 end

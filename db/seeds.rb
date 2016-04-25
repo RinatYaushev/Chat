@@ -5,14 +5,16 @@ User.create!([
     password: 'password',
     password_confirmation: 'password',
     phone: '+380671234567',
-    gender: 'man'
+    gender: 'man',
+    roles: [:administrator, :moderator]
   }, {
     email: 'joey@example.com',
     name: 'Joey',
     password: 'password',
     password_confirmation: 'password',
     phone: '+380979876543',
-    gender: 'man'
+    gender: 'man',
+    roles: [:moderator]
   }, {
     email: 'chandler@example.com',
     name: 'Chandler',

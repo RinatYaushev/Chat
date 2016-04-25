@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419122810) do
+ActiveRecord::Schema.define(version: 20160425123054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20160419122810) do
     t.integer  "pictures_count",      default: 0
     t.string   "phone"
     t.integer  "gender"
+    t.integer  "roles"
   end
 
   create_table "votes", force: :cascade do |t|

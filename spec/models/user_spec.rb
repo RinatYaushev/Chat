@@ -53,6 +53,14 @@ RSpec.describe User, type: :model do
       dependent(:destroy)
   end
 
+  describe '.values_for_roles' do
+    subject { User.values_for_roles }
+
+    it do
+      should eq [:administrator, :moderator, :user]
+    end
+  end
+
   it { should have_many(:followees).through(:active_relationships).source(:followee) }
 
   it { should have_many(:followers).through(:passive_relationships).source(:follower) }
@@ -63,5 +71,13 @@ RSpec.describe User, type: :model do
     should validate_attachment_content_type(:avatar).
       allowing('image/png', 'image/jpeg', 'image/jpg').
       rejecting('image/gif', 'application/pdf')
+  end
+
+  it { is_expected.to callback(:set_role).before(:create) }
+
+  describe '#set_role' do
+    before { subject.send :set_role }
+
+    its(:roles) { should eq [:user ] }
   end
 end

@@ -17,6 +17,7 @@ gem 'therubyracer'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'mailfactory'
+gem 'bitmask_attributes'
 
 group :development, :test do
   gem 'byebug'
