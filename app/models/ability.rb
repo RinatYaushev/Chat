@@ -4,24 +4,42 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    can :manage, Room do |room|
-      room.user_ids.include?(user.id)
+    if user.roles?(:user)
+      can [:create, :read], Room do |room|
+        room.user_ids.include?(user.id)
+      end
+
+      can [:create, :read], Message do |message|
+        message.room.user_ids.include?(user.id)
+      end
+
+      can [:create, :read], Ping do |ping|
+        ping.room.user_ids.include?(user.id)
+      end
+
+      can [:create, :read], Picture do |picture|
+        picture.room.user_ids.include?(user.id)
+      end
+
+      can :read, Product
+
+      can :manage, Purchase, user_id: user.id
+
+      can :manage, Order, user_id: user.id
+
+      can [:create, :read], Comment , user_id: user.id
     end
 
-    can :manage, Message do |message|
-      message.room.user_ids.include?(user.id)
+    if user.roles?(:moderator)
+      can :update, Room
+
+      can :update, Product
     end
 
-    can :manage, Ping do |ping|
-      ping.room.user_ids.include?(user.id)
+    if user.roles?(:administrator)
+      can :destroy, Room
+
+      can [:create, :destroy], Product
     end
-
-    can :manage, Picture do |picture|
-      picture.room.user_ids.include?(user.id)
-    end
-
-    can :manage, Purchase, user_id: user.id
-
-    can :manage, Order, user_id: user.id
   end
 end

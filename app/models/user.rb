@@ -1,6 +1,14 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  enum gender: [:man, :woman]
+
+  bitmask :roles, as: [:administrator, :moderator, :user]
+
+  has_attached_file :avatar,
+    default_url: '/images/:style/missing.png',
+    convert_options: { all: '-strip' }
+
   has_one :auth_token, dependent: :destroy
 
   has_many :rooms, through: :memberships
@@ -26,14 +34,6 @@ class User < ActiveRecord::Base
   has_many :followees, through: :active_relationships, source: :followee
 
   has_many :followers, through: :passive_relationships, source: :follower
-
-  enum gender: [:man, :woman]
-
-  bitmask :roles, as: [:administrator, :moderator, :user]
-
-  has_attached_file :avatar,
-    default_url: '/images/:style/missing.png',
-    convert_options: { all: '-strip' }
 
   validates_attachment :avatar,
     content_type: { content_type: /\Aimage\/png\Z|\Aimage\/jpe?g\Z/ },

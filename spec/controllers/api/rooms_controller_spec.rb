@@ -16,6 +16,8 @@ RSpec.describe Api::RoomsController, type: :controller do
   before { sign_in }
 
   describe '#index.json' do
+    before { expect(subject.current_ability).to receive(:can?).with(:index, Room).and_return(true) }
+
     before { get :index, format: :json }
 
     it { should render_template :index }
@@ -33,6 +35,8 @@ RSpec.describe Api::RoomsController, type: :controller do
 
   describe '#create.json' do
     let(:params) { { name: 'test_room' } }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:create, Room).and_return(true) }
 
     before { expect(Room).to receive(:build).with(subject.current_user, params).and_return(room) }
 

@@ -16,6 +16,8 @@ RSpec.describe Api::PurchasesController, type: :controller do
   before { sign_in }
 
   describe '#index.json' do
+    before { expect(subject.current_ability).to receive(:can?).with(:index, Purchase).and_return(true) }
+
     before { get :index, format: :json }
 
     it { should render_template :index }
