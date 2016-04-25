@@ -35,7 +35,7 @@ module Chat
 
     config.active_job.queue_adapter = :sidekiq
 
-    config.active_record.observers = :user_observer, :post_observer
+    config.active_record.observers = :user_observer
 
     config.eager_load_paths << config.root.join('observers').to_s
 
