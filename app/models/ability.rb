@@ -23,17 +23,15 @@ class Ability
 
       can :read, Product
 
-      can :manage, Purchase, user_id: user.id
+      can :manage, [Purchase, Order], user_id: user.id
 
-      can :manage, Order, user_id: user.id
+      can [:create, :read], Comment, user_id: user.id
 
-      can [:create, :read], Comment , user_id: user.id
+      can [:create, :read], :reply
     end
 
     if user.roles?(:moderator)
-      can :update, Room
-
-      can :update, Product
+      can :update, [Room, Product]
     end
 
     if user.roles?(:administrator)

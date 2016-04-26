@@ -1,4 +1,6 @@
 class Api::RepliesController < ApplicationController
+  authorize_resource :reply, class: false
+
   private
 
   def parent

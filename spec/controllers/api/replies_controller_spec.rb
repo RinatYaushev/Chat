@@ -12,6 +12,8 @@ RSpec.describe Api::RepliesController, type: :controller do
 
     let(:params) { { content: 'test_content', user: subject.current_user } }
 
+    before { expect(subject.current_ability).to receive(:can?).with(:create, :reply).and_return(true) }
+
     before do
       #
       # subject.collection.new -> comment
@@ -23,12 +25,14 @@ RSpec.describe Api::RepliesController, type: :controller do
 
     before { expect(comment).to receive(:save!) }
 
-    before { post :create, comment_id: 8, reply: params, format: :json }
+    before { post :create, comment_id: 27, reply: params, format: :json }
 
     it { should render_template :create }
   end
 
   describe '#index.json' do
+    before { expect(subject.current_ability).to receive(:can?).with(:index, :reply).and_return(true) }
+
     before { get :index, comment_id: 9, format: :json }
 
     it { should render_template :index }
