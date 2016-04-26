@@ -95,10 +95,6 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.4)
-    pg_search (1.0.5)
-      activerecord (>= 3.1)
-      activesupport (>= 3.1)
-      arel
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -208,7 +204,6 @@ DEPENDENCIES
   mailfactory
   paperclip
   pg
-  pg_search
   rails
   rails-observers
   rspec-activemodel-mocks

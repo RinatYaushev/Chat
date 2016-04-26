@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
   end
 
   def collection
-    @users ||= parent.users.search_by(params)
+    @users ||= users.search_by(params)
   end
 
   def build_resource
@@ -21,5 +21,13 @@ class Api::UsersController < ApplicationController
 
   def resource_params
     params.require(:user).permit(:email, :name, :password, :password_confirmation, :phone, :gender)
+  end
+
+  def users
+    if params[:room_id].present?
+      parent.users
+    else
+      User.order(:id)
+    end
   end
 end

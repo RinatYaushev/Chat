@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::UsersController, type: :controller do
+  it { should route(:get, '/api/users').to(action: :index) }
+
   it { should route(:post, '/api/users').to(action: :create) }
 
   it { should route(:get, '/api/users/1').to(action: :show, id: 1) }
@@ -33,9 +35,17 @@ RSpec.describe Api::UsersController, type: :controller do
   before { sign_in }
 
   describe '#index.json' do
-    before { get :index, room_id: 34, format: :json }
+    context do
+      before { get :index, room_id: 34, format: :json }
 
-    it { should render_template :index }
+      it { should render_template :index }
+    end
+
+    context do
+      before { get :index, format: :json }
+
+      it { should render_template :index }
+    end
   end
 
   describe '#show.json' do
@@ -59,14 +69,10 @@ RSpec.describe Api::UsersController, type: :controller do
 
     before do
       #
-      # subject.parent.users.search_by(params) -> :users
+      # subject.users.search_by(params) -> :users
       #
-      expect(subject).to receive(:parent) do
-        double.tap do |a|
-          expect(a).to receive(:users) do
-            double.tap { |b| expect(b).to receive(:search_by).with(:params).and_return(:users) }
-          end
-        end
+      expect(subject).to receive(:users) do
+        double.tap { |a| expect(a).to receive(:search_by).with(:params).and_return(:users) }
       end
     end
 
@@ -79,5 +85,28 @@ RSpec.describe Api::UsersController, type: :controller do
     before { expect(User).to receive(:find).with(1).and_return(:user) }
 
     its(:resource) { should eq :user }
+  end
+
+  describe '#users' do
+    context do
+      before { expect(subject).to receive(:params).and_return(room_id: 19) }
+
+      before do
+        #
+        # subject.parent.users -> :users
+        #
+        expect(subject).to receive(:parent) do
+          double.tap { |a| expect(a).to receive(:users).and_return(:users) }
+        end
+
+        its(:users) { should eq :users }
+      end
+    end
+
+    context do
+      before { expect(User).to receive(:order).with(:id).and_return(:users) }
+
+      its(:users) { should eq :users }
+    end
   end
 end

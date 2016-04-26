@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include PgSearch
-
   has_secure_password
 
   enum gender: [:man, :woman]
@@ -10,12 +8,6 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
     default_url: '/images/:style/missing.png',
     convert_options: { all: '-strip' }
-
-  pg_search_scope :search,
-    against: :roles,
-    using: {
-      tsearch: { dictionary: :english }
-    }
 
   has_one :auth_token, dependent: :destroy
 

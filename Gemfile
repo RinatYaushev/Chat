@@ -18,7 +18,6 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'mailfactory'
 gem 'bitmask_attributes'
-gem 'pg_search'
 
 group :development, :test do
   gem 'byebug'
