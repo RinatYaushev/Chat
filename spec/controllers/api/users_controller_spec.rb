@@ -55,12 +55,18 @@ RSpec.describe Api::UsersController, type: :controller do
   end
 
   describe '#collection' do
+    before { expect(subject).to receive(:params).and_return(:params) }
+
     before do
       #
-      # subject.parent.users -> :users
+      # subject.parent.users.search_by(params) -> :users
       #
       expect(subject).to receive(:parent) do
-        double.tap { |a| expect(a).to receive(:users).and_return(:users) }
+        double.tap do |a|
+          expect(a).to receive(:users) do
+            double.tap { |b| expect(b).to receive(:search_by).with(:params).and_return(:users) }
+          end
+        end
       end
     end
 

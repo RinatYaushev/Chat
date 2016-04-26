@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  it { should be_a PgSearch }
+
   it { should have_secure_password }
 
   it { should define_enum_for(:gender).with([:man, :woman]) }
@@ -79,5 +81,21 @@ RSpec.describe User, type: :model do
     before { subject.send :set_role }
 
     its(:roles) { should eq [:user ] }
+  end
+
+  describe '.search_by' do
+    let(:relation) { double }
+
+    before { expect(User).to receive(:all).and_return(relation) }
+
+    context do
+      it { expect { User.search_by }.to_not raise_error }
+    end
+
+    context do
+      before { expect(relation).to receive(:with_roles).with('user') }
+
+      it { expect { User.search_by 'role' => 'user' }.to_not raise_error }
+    end
   end
 end

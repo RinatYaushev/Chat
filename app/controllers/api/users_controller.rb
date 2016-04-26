@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
   end
 
   def collection
-    @users ||= parent.users
+    @users ||= parent.users.search_by(params)
   end
 
   def build_resource

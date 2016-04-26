@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include PgSearch
+
   has_secure_password
 
   enum gender: [:man, :woman]
@@ -8,6 +10,12 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
     default_url: '/images/:style/missing.png',
     convert_options: { all: '-strip' }
+
+  pg_search_scope :search,
+    against: :roles,
+    using: {
+      tsearch: { dictionary: :english }
+    }
 
   has_one :auth_token, dependent: :destroy
 
@@ -46,6 +54,20 @@ class User < ActiveRecord::Base
   validates :phone, phone: true
 
   before_create :set_role
+
+  class << self
+    def search_by params = {}
+      params = params&.symbolize_keys || {}
+
+      collection = all
+
+      if params[:role].present?
+        collection = collection.with_roles(params[:role])
+      end
+
+      collection
+    end
+  end
 
   private
 
