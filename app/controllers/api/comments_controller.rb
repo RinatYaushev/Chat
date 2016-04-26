@@ -1,8 +1,14 @@
 class Api::CommentsController < ApplicationController
+  load_and_authorize_resource :product
+
+  load_and_authorize_resource :comment, through: :product
+
+  skip_load_resource :comment, through: :product, only: :create
+
   private
 
   def parent
-    @product ||= Product.find(params[:product_id])
+    @product
   end
 
   def collection
@@ -14,7 +20,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def resource
-    @comment ||= Comment.find(params[:id])
+    @comment
   end
 
   def resource_params

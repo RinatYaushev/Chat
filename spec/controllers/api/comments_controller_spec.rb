@@ -8,9 +8,17 @@ RSpec.describe Api::CommentsController, type: :controller do
   before { sign_in }
 
   describe '#create.json' do
-    let(:comment) { stub_model Comment }
+    let(:product) { stub_model Product }
+
+    let(:comment) { double }
 
     let(:params) { { content: 'test_content', user: subject.current_user } }
+
+    before { expect(Product).to receive(:find).with('54').and_return(product) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:show, product).and_return(true) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:create, product => Comment).and_return(true) }
 
     before do
       #
@@ -23,21 +31,29 @@ RSpec.describe Api::CommentsController, type: :controller do
 
     before { expect(comment).to receive(:save!) }
 
-    before { post :create, product_id: 8, comment: params, format: :json }
+    before { post :create, product_id: 54, comment: params, format: :json }
 
     it { should render_template :create }
   end
 
   describe '#index.json' do
-    before { get :index, product_id: 9, format: :json }
+    let(:product) { stub_model Product }
+
+    let(:comment) { double }
+
+    before { expect(Product).to receive(:find).with('58').and_return(product) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:show, product).and_return(true) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:index, product => Comment).and_return(true) }
+
+    before { get :index, product_id: 58, format: :json }
 
     it { should render_template :index }
   end
 
   describe '#parent' do
-    before { expect(subject).to receive(:params).and_return(product_id: 16) }
-
-    before { expect(Product).to receive(:find).with(16).and_return(:product) }
+    before { subject.instance_variable_set :@product, :product }
 
     its(:parent) { should eq :product }
   end
@@ -56,10 +72,8 @@ RSpec.describe Api::CommentsController, type: :controller do
   end
 
   describe '#resource' do
-    before { expect(subject).to receive(:params).and_return({ id: 43 }) }
+    before { subject.instance_variable_set :@comment, :comment }
 
-    before { expect(Comment).to receive(:find).with(43) }
-
-    it { expect { subject.send :resource }.to_not raise_error }
+    its(:resource) { should eq :comment }
   end
 end
