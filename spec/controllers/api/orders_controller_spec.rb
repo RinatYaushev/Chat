@@ -59,9 +59,9 @@ RSpec.describe Api::OrdersController, type: :controller do
   end
 
   describe '#destroy.json' do
-    before { expect(subject.current_ability).to receive(:can?).with(:destroy, Order).and_return(true) }
-
     before { expect(Order).to receive(:find).with('8').and_return(order) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:destroy, Order).and_return(true) }
 
     before { expect(order).to receive(:destroy!) }
 

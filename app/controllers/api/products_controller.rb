@@ -1,16 +1,18 @@
 class Api::ProductsController < ApplicationController
+  load_and_authorize_resource
+
   private
 
   def collection
-    @products ||= Product.all
+    @products
   end
 
   def build_resource
-    @product = Product.new(resource_params)
+    @product
   end
 
   def resource
-    @product ||= Product.find(params[:id])
+    @product
   end
 
   def resource_params

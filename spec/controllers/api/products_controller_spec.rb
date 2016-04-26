@@ -16,19 +16,27 @@ RSpec.describe Api::ProductsController, type: :controller do
   before { sign_in }
 
   describe '#index.json' do
+    before { expect(subject.current_ability).to receive(:can?).with(:index, Product).and_return(true) }
+
     before { get :index, format: :json }
 
     it { should render_template :index }
   end
 
   describe '#show.json' do
-    before { get :show, id: 45, format: :json }
+    before { subject.instance_variable_set :@product, product }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:show, product).and_return(true) }
+
+    before { get :show, id: 50, format: :json }
 
     it { should render_template :show }
   end
 
   describe '#create.json' do
     let(:params) { { name: 'test_product', price: 100 } }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:create, Product).and_return(true) }
 
     before { expect(Product).to receive(:new).with(params).and_return(product) }
 
@@ -44,6 +52,8 @@ RSpec.describe Api::ProductsController, type: :controller do
 
     before { expect(Product).to receive(:find).with('51').and_return(product) }
 
+    before { expect(subject.current_ability).to receive(:can?).with(:update, product).and_return(true) }
+
     before { expect(product).to receive(:update!).with(params) }
 
     before { put :update, id: 51, product: params, format: :json }
@@ -54,6 +64,8 @@ RSpec.describe Api::ProductsController, type: :controller do
   describe '#destroy.json' do
     before { expect(Product).to receive(:find).with('54').and_return(product) }
 
+    before { expect(subject.current_ability).to receive(:can?).with(:destroy, product).and_return(true) }
+
     before { expect(product).to receive(:destroy!) }
 
     before { delete :destroy, id: 54, format: :json }
@@ -62,16 +74,14 @@ RSpec.describe Api::ProductsController, type: :controller do
   end
 
   describe '#collection' do
-    before { expect(Product).to receive(:all) }
+    before { subject.instance_variable_set :@products, :products }
 
-    it { expect { subject.send :collection }.to_not raise_error }
+    its(:collection) { should eq :products }
   end
 
   describe '#resource' do
-    before { expect(subject).to receive(:params).and_return({ id: 55 }) }
+    before { subject.instance_variable_set :@product, :product }
 
-    before { expect(Product).to receive(:find).with(55) }
-
-    it { expect { subject.send :resource }.to_not raise_error }
+    its(:resource) { should eq :product }
   end
 end

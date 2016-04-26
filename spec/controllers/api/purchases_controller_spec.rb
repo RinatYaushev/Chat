@@ -50,9 +50,9 @@ RSpec.describe Api::PurchasesController, type: :controller do
   describe '#update.json' do
     let(:params) { { user: subject.current_user, product_id: 12, quantity: 10 } }
 
-    before { expect(subject.current_ability).to receive(:can?).with(:update, Purchase).and_return(true) }
-
     before { expect(Purchase).to receive(:find).with('19').and_return(purchase) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:update, purchase).and_return(true) }
 
     before { expect(purchase).to receive(:update!) }
 
@@ -62,9 +62,9 @@ RSpec.describe Api::PurchasesController, type: :controller do
   end
 
   describe '#destroy.json' do
-    before { expect(subject.current_ability).to receive(:can?).with(:destroy, Purchase).and_return(true) }
-
     before { expect(Purchase).to receive(:find).with('10').and_return(purchase) }
+
+    before { expect(subject.current_ability).to receive(:can?).with(:destroy, purchase).and_return(true) }
 
     before { expect(purchase).to receive(:destroy!) }
 
