@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
   end
 
   def collection
-    @users ||= users.search_by(params)
+    @users ||= end_of_association_chain.search_by(params)
   end
 
   def build_resource
@@ -23,7 +23,7 @@ class Api::UsersController < ApplicationController
     params.require(:user).permit(:email, :name, :password, :password_confirmation, :phone, :gender)
   end
 
-  def users
+  def end_of_association_chain
     if params[:room_id].present?
       parent.users
     else

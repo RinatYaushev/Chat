@@ -69,9 +69,9 @@ RSpec.describe Api::UsersController, type: :controller do
 
     before do
       #
-      # subject.users.search_by(params) -> :users
+      # subject.end_of_association_chain.search_by(params) -> :users
       #
-      expect(subject).to receive(:users) do
+      expect(subject).to receive(:end_of_association_chain) do
         double.tap { |a| expect(a).to receive(:search_by).with(:params).and_return(:users) }
       end
     end
@@ -87,7 +87,7 @@ RSpec.describe Api::UsersController, type: :controller do
     its(:resource) { should eq :user }
   end
 
-  describe '#users' do
+  describe '#end_of_association_chain' do
     context do
       before { expect(subject).to receive(:params).and_return(room_id: 19) }
 
@@ -99,14 +99,14 @@ RSpec.describe Api::UsersController, type: :controller do
           double.tap { |a| expect(a).to receive(:users).and_return(:users) }
         end
 
-        its(:users) { should eq :users }
+        its(:end_of_association_chain) { should eq :users }
       end
     end
 
     context do
       before { expect(User).to receive(:order).with(:id).and_return(:users) }
 
-      its(:users) { should eq :users }
+      its(:end_of_association_chain) { should eq :users }
     end
   end
 end
