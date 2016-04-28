@@ -10,6 +10,6 @@ class UserDecorator < Draper::Decorator
   end
 
   def avatar
-    model.avatar.url :original if object.avatar.present?
+    model.avatar.url :original if model.avatar.present?
   end
 end
