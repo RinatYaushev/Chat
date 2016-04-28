@@ -19,7 +19,8 @@ RSpec.describe Api::ApidocsController, type: :controller do
         Apidocs::Rooms,
         Apidocs::Messages,
         Apidocs::Pings,
-        Apidocs::Pictures
+        Apidocs::Pictures,
+        Apidocs::Votes
       ]
     end
 

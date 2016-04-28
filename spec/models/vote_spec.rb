@@ -16,4 +16,6 @@ RSpec.describe Vote, type: :model do
   it { should define_enum_for(:kind).with([:like, :dislike]) }
 
   it { should validate_presence_of :user }
+
+  it { should validate_presence_of :kind }
 end

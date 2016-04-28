@@ -5,7 +5,7 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, uniqueness: { scope: [:votable_id, :votable_type] }
 
-  validates :user, presence: true
+  validates :user, :kind, presence: true
 
   enum kind: [:like, :dislike]
 end

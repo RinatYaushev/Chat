@@ -28,7 +28,8 @@ class Api::ApidocsController < ActionController::Base
     Apidocs::Rooms,
     Apidocs::Messages,
     Apidocs::Pings,
-    Apidocs::Pictures
+    Apidocs::Pictures,
+    Apidocs::Votes
   ].freeze
 
   def index
