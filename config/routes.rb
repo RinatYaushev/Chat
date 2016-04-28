@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       post :vote, to: 'votes#create'
     end
 
+    resources :apidocs, only: :index
+
     resources :users, only: [:create, :show, :index]
 
     resources :relationships, only: [:create, :destroy]
