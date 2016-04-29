@@ -24,7 +24,10 @@ RSpec.describe Api::ApidocsController, type: :controller do
         Apidocs::Men,
         Apidocs::Women,
         Apidocs::Products,
-        Apidocs::Comments
+        Apidocs::Comments,
+        Apidocs::Replies,
+        Apidocs::Purchases,
+        Apidocs::Orders
       ]
     end
 

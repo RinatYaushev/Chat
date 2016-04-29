@@ -33,7 +33,10 @@ class Api::ApidocsController < ActionController::Base
     Apidocs::Men,
     Apidocs::Women,
     Apidocs::Products,
-    Apidocs::Comments
+    Apidocs::Comments,
+    Apidocs::Replies,
+    Apidocs::Purchases,
+    Apidocs::Orders
   ].freeze
 
   def index
