@@ -114,17 +114,4 @@ class Apidocs::Profile
       end
     end
   end
-
-  swagger_schema :OutputRelationship do
-    key :required, [:id, :follower_id, :followee_id]
-    property :id do
-      key :type, :integer
-    end
-    property :follower_id do
-      key :type, :integer
-    end
-    property :followee_id do
-      key :type, :integer
-    end
-  end
 end

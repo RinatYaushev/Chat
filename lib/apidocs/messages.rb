@@ -78,14 +78,11 @@ class Apidocs::Messages
     key :required, [:message]
     property :message do
       key :type, :object
-      key :'$ref', :InputMessage
-    end
-  end
-
-  swagger_schema :InputMessage do
-    key :required, [:content]
-    property :content do
-      key :type, :string
+      key :properties, {
+        content: {
+          type: :string
+        }
+      }
     end
   end
 

@@ -57,12 +57,22 @@ class Apidocs::Relationships
     key :required, [:relationship]
     property :relationship do
       key :type, :object
-      key :'$ref', :InputRelationship
+      key :properties, {
+        followee_id: {
+          type: :integer
+        }
+      }
     end
   end
 
-  swagger_schema :InputRelationship do
-    key :required, [:followee_id]
+  swagger_schema :OutputRelationship do
+    key :required, [:id, :follower_id, :followee_id]
+    property :id do
+      key :type, :integer
+    end
+    property :follower_id do
+      key :type, :integer
+    end
     property :followee_id do
       key :type, :integer
     end

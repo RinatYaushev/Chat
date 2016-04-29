@@ -155,17 +155,14 @@ class Apidocs::Purchases
     key :required, [:purchase]
     property :purchase do
       key :type, :object
-      key :'$ref', :InputPurchase
-    end
-  end
-
-  swagger_schema :InputPurchase do
-    key :required, [:product_id, :quantity]
-    property :product_id do
-      key :type, :integer
-    end
-    property :quantity do
-      key :type, :integer
+      key :properties, {
+        product_id: {
+          type: :integer
+        },
+        quantity: {
+          type: :integer
+        }
+      }
     end
   end
 
@@ -178,8 +175,8 @@ class Apidocs::Purchases
       key :type, :integer
     end
     property :sum do
-      key :type, :float
-      key :default, '0.0'
+      key :type, :number
+      key :format, :float
     end
     property :user_id do
       key :type, :integer

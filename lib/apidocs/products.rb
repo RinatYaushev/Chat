@@ -155,18 +155,15 @@ class Apidocs::Products
     key :required, [:product]
     property :product do
       key :type, :object
-      key :'$ref', :InputProduct
-    end
-  end
-
-  swagger_schema :InputProduct do
-    key :required, [:name, :price]
-    property :name do
-      key :type, :string
-    end
-    property :price do
-      key :type, :float
-      key :default, '0.0'
+      key :properties, {
+        name: {
+          type: :string
+        },
+        price: {
+          type: :number,
+          format: :float
+        }
+      }
     end
   end
 
@@ -179,8 +176,8 @@ class Apidocs::Products
       key :type, :string
     end
     property :price do
-      key :type, :float
-      key :default, '0.0'
+      key :type, :number
+      key :format, :float
     end
   end
 

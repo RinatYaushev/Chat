@@ -122,8 +122,8 @@ class Apidocs::Orders
       key :type, :integer
     end
     property :total do
-      key :type, :float
-      key :default, '0.0'
+      key :type, :number
+      key :format, :float
     end
     property :user_id do
       key :type, :integer

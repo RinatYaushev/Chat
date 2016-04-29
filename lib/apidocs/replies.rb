@@ -78,14 +78,11 @@ class Apidocs::Replies
     key :required, [:reply]
     property :reply do
       key :type, :object
-      key :'$ref', :InputReply
-    end
-  end
-
-  swagger_schema :InputReply do
-    key :required, [:content]
-    property :content do
-      key :type, :string
+      key :properties, {
+        content: {
+          type: :string
+        }
+      }
     end
   end
 end

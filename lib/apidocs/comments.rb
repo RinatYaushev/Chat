@@ -78,14 +78,11 @@ class Apidocs::Comments
     key :required, [:comment]
     property :comment do
       key :type, :object
-      key :'$ref', :InputComment
-    end
-  end
-
-  swagger_schema :InputComment do
-    key :required, [:content]
-    property :content do
-      key :type, :string
+      key :properties, {
+        content: {
+          type: :string
+        }
+      }
     end
   end
 
